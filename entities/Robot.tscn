@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cae5y4l6ajbrh"]
+
+[ext_resource type="Script" path="res://scripts/Robot.gd" id="1_fbasr"]
+[ext_resource type="Texture2D" uid="uid://cs6fvsvcheyf8" path="res://sprites/Robot.png" id="1_ppq4i"]
+
+[node name="Robot" type="Node3D"]
+script = ExtResource("1_fbasr")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = ExtResource("1_ppq4i")
