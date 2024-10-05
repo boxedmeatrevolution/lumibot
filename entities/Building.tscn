@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://xgytm0x4vyxr"]
+
+[ext_resource type="Texture2D" uid="uid://1sylsjeuyoqv" path="res://sprites/Building.png" id="1_1vgij"]
+[ext_resource type="Script" path="res://scripts/Building.gd" id="1_j8ga0"]
+
+[node name="Building" type="Node3D"]
+script = ExtResource("1_j8ga0")
+
+[node name="Sprite" type="Sprite3D" parent="."]
+offset = Vector2(0, 480)
+alpha_cut = 1
+texture = ExtResource("1_1vgij")
+hframes = 3
