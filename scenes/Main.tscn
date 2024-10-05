@@ -1,12 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5w1jp5aqndav"]
+[gd_scene load_steps=6 format=3 uid="uid://c5w1jp5aqndav"]
 
 [ext_resource type="PackedScene" uid="uid://cae5y4l6ajbrh" path="res://entities/Robot.tscn" id="1_34fhc"]
 [ext_resource type="PackedScene" uid="uid://xgytm0x4vyxr" path="res://entities/Building.tscn" id="2_3hcdi"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c5g0x"]
+sky_top_color = Color(0.763506, 0.581599, 0.666773, 1)
+sky_horizon_color = Color(0.788235, 0.247059, 0.4, 1)
+sky_curve = 0.243675
+sun_angle_max = 15.0
+sun_curve = 2.29739
+
+[sub_resource type="Sky" id="Sky_7g2di"]
+sky_material = SubResource("ProceduralSkyMaterial_c5g0x")
+
+[sub_resource type="Environment" id="Environment_hcvir"]
+background_mode = 2
+sky = SubResource("Sky_7g2di")
+ambient_light_source = 3
+
 [node name="Main" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hcvir")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.907777, -0.0728371, -0.41308, 0, -0.984808, 0.173648, -0.419452, -0.157634, -0.893986, 0, 40, 0)
+light_color = Color(1, 0.54902, 0.580392, 1)
+directional_shadow_mode = 0
+
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 12.4737, 0)
+transform = Transform3D(1, 0, 0, 0, 0.990268, 0.139173, 0, -0.139173, 0.990268, 0, 12.4737, 0)
 
 [node name="Robot" parent="." instance=ExtResource("1_34fhc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -31.8774)

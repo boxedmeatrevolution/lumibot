@@ -8,6 +8,7 @@ script = ExtResource("1_j8ga0")
 
 [node name="Sprite" type="Sprite3D" parent="."]
 offset = Vector2(0, 480)
+shaded = true
 alpha_cut = 1
 texture = ExtResource("1_1vgij")
 hframes = 3
