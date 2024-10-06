@@ -64,9 +64,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -31.8774)
 [node name="Building" parent="Buildings" instance=ExtResource("2_3hcdi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -27.0921)
 
-[node name="Building31" parent="Buildings" instance=ExtResource("2_3hcdi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.52635, 0, -34.5048)
-
 [node name="Building2" parent="Buildings" instance=ExtResource("2_3hcdi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.841, 0, -23.7517)
 
@@ -153,6 +150,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.671, 0, -24.4445)
 
 [node name="Building30" parent="Buildings" instance=ExtResource("2_3hcdi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5444, 0, -51.7073)
+
+[node name="Building31" parent="Buildings" instance=ExtResource("2_3hcdi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.52635, 0, -34.5048)
 
 [node name="BackgroundCity" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -128)

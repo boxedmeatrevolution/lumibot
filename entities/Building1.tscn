@@ -20,3 +20,10 @@ collision_mask = 0
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Area3D"]
 depth = 2.0
 polygon = PackedVector2Array(-1.49545, 0.813156, -0.640763, 5.65638, -1.48449, 7.90268, -1.39683, 9.41482, 1.39734, 9.55727, 1.75894, 9.18471, 1.1234, 8.14374, 1.68223, 6.0399, 0.444032, 0.144746, -1.34204, 0.122831)
+
+[node name="GrabPoint" type="Node3D" parent="."]
+transform = Transform3D(-0.0941605, 0.995557, 0, -0.995557, -0.0941605, 0, 0, 0, 1, 0.50626, 4.84783, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="GrabPoint"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+enabled = false
