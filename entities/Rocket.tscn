@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bjqrwr1vb63xj"]
+[gd_scene load_steps=14 format=3 uid="uid://bjqrwr1vb63xj"]
 
 [ext_resource type="Script" path="res://scripts/Rocket.gd" id="1_u4m3g"]
 [ext_resource type="ArrayMesh" uid="uid://x6yqw6pes5mp" path="res://models/Rocket.obj" id="1_vv62b"]
@@ -54,6 +54,10 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_rs1o4")
 size = Vector2(0.75, 0.75)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6iaak"]
+radius = 0.3
+height = 1.0
+
 [node name="Rocket" type="Node3D"]
 script = ExtResource("1_u4m3g")
 
@@ -80,3 +84,10 @@ amount = 16
 lifetime = 5.0
 process_material = SubResource("ParticleProcessMaterial_l1g72")
 draw_pass_1 = SubResource("QuadMesh_li18u")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_6iaak")

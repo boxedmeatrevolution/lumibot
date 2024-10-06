@@ -18,8 +18,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if randf() > exp(-delta / 3):
 		var rocket = RocketScene.instantiate()
-		rocket.global_position = global_position
 		get_parent().add_child(rocket)
+		rocket.global_position = global_position
 	if state == State.STAND:
 		if randf() > exp(-delta / 3):
 			state = State.WALK

@@ -18,3 +18,11 @@ config/icon="res://icon.svg"
 [dotnet]
 
 project/assembly_name="ludum-dare-56"
+
+[layer_names]
+
+3d_physics/layer_1="Bullet"
+3d_physics/layer_2="Robot"
+3d_physics/layer_3="Creature"
+3d_physics/layer_4="Building"
+3d_physics/layer_5="Rocket"
