@@ -1,18 +1,19 @@
 extends Camera3D
 
-var normal_fov = 70.0
-var zoomed_fov = 20.0
-var sensitivity = 0.001
-var is_zoomed_in = false
+const NORMAL_FOV : float = 40
+const ZOOMED_FOV : float = 15
+const NORMAL_SENSITIVITY : float = 0.002
+const ZOOMED_SENSITIVITY : float = 0.0004
+var sensitivity := NORMAL_SENSITIVITY
+var is_zoomed_in := false
 
-@onready
-var crosshair = $Crosshair
+@onready var crosshair := $Crosshair
 
-@onready
-var scope = $Scope
+@onready var scope := $Scope
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	fov = NORMAL_FOV
 	scope.visible = false
 	crosshair.visible = true
 	var mouseButton = InputEventMouseButton.new()
@@ -39,8 +40,9 @@ func zoom_in():
 	if not is_zoomed_in:
 		scope.visible = true
 		crosshair.visible = false
-		fov = zoomed_fov			
+		fov = ZOOMED_FOV
 		is_zoomed_in = true
+		sensitivity = ZOOMED_SENSITIVITY
 		# Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 # Function to zoom out
@@ -48,8 +50,9 @@ func zoom_out():
 	if is_zoomed_in:
 		scope.visible = false
 		crosshair.visible = true
-		fov = normal_fov
+		fov = NORMAL_FOV
 		is_zoomed_in = false
+		sensitivity = NORMAL_SENSITIVITY
 		# Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _input(event):
