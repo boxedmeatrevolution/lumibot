@@ -4,8 +4,9 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jg2pv"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b7ekp"]
-albedo_color = Color(1, 1, 0, 1)
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_v7icb"]
+transparency = 1
+albedo_color = Color(1, 1, 0, 0.196078)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_818x5"]
 
@@ -17,8 +18,14 @@ script = ExtResource("1_h41d5")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
 transform = Transform3D(0.05, 0, 0, 0, -2.18557e-09, -0.05, 0, 0.05, -2.18557e-09, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_jg2pv")
-surface_material_override/0 = SubResource("StandardMaterial3D_b7ekp")
+surface_material_override/0 = SubResource("ORMMaterial3D_v7icb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(0.05, 0, 0, 0, -2.18557e-09, -0.05, 0, 0.05, -2.18557e-09, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_818x5")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Area3D"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 0.3
+light_size = 0.1
+light_specular = 1.0
