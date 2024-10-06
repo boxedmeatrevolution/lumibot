@@ -1,15 +1,58 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjqrwr1vb63xj"]
+[gd_scene load_steps=13 format=3 uid="uid://bjqrwr1vb63xj"]
 
 [ext_resource type="Script" path="res://scripts/Rocket.gd" id="1_u4m3g"]
 [ext_resource type="ArrayMesh" uid="uid://x6yqw6pes5mp" path="res://models/Rocket.obj" id="1_vv62b"]
 [ext_resource type="Texture2D" uid="uid://dai8qqh0lggkj" path="res://sprites/LensFlare.png" id="2_ac6ax"]
+[ext_resource type="Texture2D" uid="uid://bcy2xivtehdiv" path="res://sprites/SmokeParticle.png" id="4_5gl50"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efmfh"]
 albedo_color = Color(0.898039, 0.129412, 0, 1)
 emission_energy_multiplier = 5.76
+rim_enabled = true
+rim = 0.2
 heightmap_scale = 4.64
 subsurf_scatter_strength = 0.66
 disable_receive_shadows = true
+
+[sub_resource type="Curve" id="Curve_di6pf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.84178, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2g2iy"]
+curve = SubResource("Curve_di6pf")
+
+[sub_resource type="Curve" id="Curve_wcm02"]
+max_value = 3.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 3), 2.58143, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qvuas"]
+curve = SubResource("Curve_wcm02")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l1g72"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = -180.0
+angle_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_qvuas")
+alpha_curve = SubResource("CurveTexture_2g2iy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rs1o4"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_5gl50")
+disable_receive_shadows = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_li18u"]
+material = SubResource("StandardMaterial3D_rs1o4")
+size = Vector2(0.75, 0.75)
 
 [node name="Rocket" type="Node3D"]
 script = ExtResource("1_u4m3g")
@@ -30,3 +73,10 @@ billboard = 1
 fixed_size = true
 alpha_cut = 2
 texture = ExtResource("2_ac6ax")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+amount = 16
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_l1g72")
+draw_pass_1 = SubResource("QuadMesh_li18u")
