@@ -10,10 +10,14 @@ config_version=5
 
 [application]
 
-config/name="ludum-dare-56"
+config/name="Ludum Dare 56"
 run/main_scene="res://scenes/Main.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/mode=2
 
 [dotnet]
 
@@ -26,3 +30,5 @@ project/assembly_name="ludum-dare-56"
 3d_physics/layer_3="Creature"
 3d_physics/layer_4="Building"
 3d_physics/layer_5="Rocket"
+3d_physics/layer_6="BuildingPickup"
+3d_physics/layer_7="BuildingThrow"

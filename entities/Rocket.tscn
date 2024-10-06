@@ -67,12 +67,13 @@ mesh = ExtResource("1_vv62b")
 surface_material_override/0 = SubResource("StandardMaterial3D_efmfh")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
-visibility_range_begin = 24.0
-visibility_range_begin_margin = 12.0
+transform = Transform3D(0.065, 0, 0, 0, 0.065, 0, 0, 0, 0.065, 0, 0, 0)
+visibility_range_begin = 64.0
+visibility_range_begin_margin = 32.0
 visibility_range_end = 256.0
 visibility_range_end_margin = 64.0
 visibility_range_fade_mode = 1
+modulate = Color(1, 1, 1, 0.501961)
 billboard = 1
 fixed_size = true
 alpha_cut = 2
