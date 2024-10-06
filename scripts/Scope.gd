@@ -6,6 +6,7 @@ const NORMAL_SENSITIVITY : float = 0.002
 const ZOOMED_SENSITIVITY : float = 0.0004
 var sensitivity := NORMAL_SENSITIVITY
 var is_zoomed_in := false
+var can_shoot = true
 
 # Camera shake
 var shake_amount = 0.0
@@ -19,9 +20,12 @@ var rot_y : float = 0
 
 @onready var crosshair = $Crosshair
 @onready var scope = $Scope
+@onready var timer = $Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	timer.connect("timeout", _on_Timer_timeout)
+	
 	fov = NORMAL_FOV
 	scope.visible = false
 	crosshair.visible = true
@@ -100,7 +104,12 @@ func zoom_out():
 		sensitivity = NORMAL_SENSITIVITY
 
 func shoot():
-	var bullet_instance = Bullet.instantiate()
-	get_tree().root.add_child(bullet_instance)
-	bullet_instance.global_transform = global_transform.translated(Vector3(0, -5, 0))
-	
+	if can_shoot:
+		var bullet_instance = Bullet.instantiate()
+		get_tree().root.add_child(bullet_instance)
+		bullet_instance.global_transform = global_transform.translated(Vector3(0, -5, 0))
+		can_shoot = false
+		timer.start()
+
+func _on_Timer_timeout():
+	can_shoot = true
