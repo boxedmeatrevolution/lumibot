@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5w1jp5aqndav"]
+[gd_scene load_steps=10 format=3 uid="uid://c5w1jp5aqndav"]
 
 [ext_resource type="PackedScene" uid="uid://cae5y4l6ajbrh" path="res://entities/Robot.tscn" id="1_34fhc"]
 [ext_resource type="PackedScene" uid="uid://xgytm0x4vyxr" path="res://entities/Building.tscn" id="2_3hcdi"]
+[ext_resource type="Texture2D" uid="uid://c1lucmhlfshvx" path="res://sprites/BackgroundCity.png" id="3_5ylqb"]
+[ext_resource type="PackedScene" uid="uid://drsxmxgwgafc8" path="res://entities/Cloud.tscn" id="4_edb36"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c5g0x"]
 sky_top_color = Color(0.763506, 0.581599, 0.666773, 1)
@@ -17,6 +19,19 @@ sky_material = SubResource("ProceduralSkyMaterial_c5g0x")
 background_mode = 2
 sky = SubResource("Sky_7g2di")
 ambient_light_source = 3
+ambient_light_energy = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ntjg"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("3_5ylqb")
+uv1_scale = Vector3(5, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_weo5w"]
+material = SubResource("StandardMaterial3D_3ntjg")
+size = Vector2(400, 40)
+center_offset = Vector3(0, 20, 0)
 
 [node name="Main" type="Node3D"]
 
@@ -125,3 +140,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.671, 0, -24.4445)
 
 [node name="Building30" parent="Buildings" instance=ExtResource("2_3hcdi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5444, 0, -51.7073)
+
+[node name="BackgroundCity" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -128)
+mesh = SubResource("QuadMesh_weo5w")
+
+[node name="Clouds" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -130)
+
+[node name="Cloud" parent="Clouds" instance=ExtResource("4_edb36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.7679, 43.344, 0)
+
+[node name="Cloud2" parent="Clouds" instance=ExtResource("4_edb36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5287, 68.0499, 0)
+
+[node name="Cloud3" parent="Clouds" instance=ExtResource("4_edb36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -183.453, 26.1573, 0)

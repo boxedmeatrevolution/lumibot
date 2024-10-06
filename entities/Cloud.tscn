@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://drsxmxgwgafc8"]
+
+[ext_resource type="Texture2D" uid="uid://caavlvo0n1uox" path="res://sprites/Cloud.png" id="1_4f2ip"]
+[ext_resource type="Script" path="res://scripts/Cloud.gd" id="2_6xit0"]
+
+[node name="Cloud" type="Node3D"]
+script = ExtResource("2_6xit0")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+aabb = AABB(-3, -1, -1, 6, 2, 2)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+modulate = Color(0.901428, 0.901428, 0.901428, 1)
+shaded = true
+alpha_cut = 1
+texture = ExtResource("1_4f2ip")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="Sprite3D" method="_on_screen_exited"]

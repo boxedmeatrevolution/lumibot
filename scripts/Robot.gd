@@ -1,5 +1,7 @@
 extends Node3D
 
+const RocketScene := preload("res://entities/Rocket.tscn")
+
 var velocity : Vector3 = Vector3(0, 0, 0)
 @onready var animation_player := $AnimationPlayer
 
@@ -14,6 +16,10 @@ func _ready() -> void:
 	animation_player.play("STAND")
 
 func _process(delta: float) -> void:
+	if randf() > exp(-delta / 3):
+		var rocket = RocketScene.instantiate()
+		rocket.global_position = global_position
+		get_parent().add_child(rocket)
 	if state == State.STAND:
 		if randf() > exp(-delta / 3):
 			state = State.WALK

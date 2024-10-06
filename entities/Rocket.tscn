@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjqrwr1vb63xj"]
+
+[ext_resource type="Script" path="res://scripts/Rocket.gd" id="1_u4m3g"]
+[ext_resource type="ArrayMesh" uid="uid://x6yqw6pes5mp" path="res://models/Rocket.obj" id="1_vv62b"]
+[ext_resource type="Texture2D" uid="uid://dai8qqh0lggkj" path="res://sprites/LensFlare.png" id="2_ac6ax"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efmfh"]
+albedo_color = Color(0.898039, 0.129412, 0, 1)
+emission_energy_multiplier = 5.76
+heightmap_scale = 4.64
+subsurf_scatter_strength = 0.66
+disable_receive_shadows = true
+
+[node name="Rocket" type="Node3D"]
+script = ExtResource("1_u4m3g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = ExtResource("1_vv62b")
+surface_material_override/0 = SubResource("StandardMaterial3D_efmfh")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+visibility_range_begin = 24.0
+visibility_range_begin_margin = 12.0
+visibility_range_end = 256.0
+visibility_range_end_margin = 64.0
+visibility_range_fade_mode = 1
+billboard = 1
+fixed_size = true
+alpha_cut = 2
+texture = ExtResource("2_ac6ax")
