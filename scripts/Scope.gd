@@ -7,27 +7,46 @@ const ZOOMED_SENSITIVITY : float = 0.0004
 var sensitivity := NORMAL_SENSITIVITY
 var is_zoomed_in := false
 
+# Camera shake
+var shake_amount = 0.0
+var shake_decay = 10.0
+var shake_intensity = 0.75
+
+@export var Bullet = preload("res://entities/Bullet.tscn")
+
 var rot_x : float = 0
 var rot_y : float = 0
 
-@onready var crosshair := $Crosshair
-
-@onready var scope := $Scope
+@onready var crosshair = $Crosshair
+@onready var scope = $Scope
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fov = NORMAL_FOV
 	scope.visible = false
 	crosshair.visible = true
-	var mouseButton = InputEventMouseButton.new()
-	mouseButton.set_button_index(MOUSE_BUTTON_RIGHT)
+	
+	# Set camera zoom input
+	var mouseButtonRight = InputEventMouseButton.new()
+	mouseButtonRight.set_button_index(MOUSE_BUTTON_RIGHT)
 
-	var key = InputEventKey.new()
-	key.physical_keycode = KEY_CTRL
+	var keyCtrl = InputEventKey.new()
+	keyCtrl.physical_keycode = KEY_CTRL
 
 	InputMap.add_action("zoom")
-	InputMap.action_add_event("zoom", mouseButton)
-	InputMap.action_add_event("zoom", key)
+	InputMap.action_add_event("zoom", mouseButtonRight)
+	InputMap.action_add_event("zoom", keyCtrl)
+
+	# Set shooting input
+	var mouseButtonLeft = InputEventMouseButton.new()
+	mouseButtonLeft.set_button_index(MOUSE_BUTTON_LEFT)
+	
+	var keyShift = InputEventKey.new()
+	keyShift.physical_keycode = KEY_SHIFT
+	
+	InputMap.add_action("shoot")
+	InputMap.action_add_event("shoot", mouseButtonLeft)
+	InputMap.action_add_event("shoot", keyShift)
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -37,6 +56,30 @@ func _process(delta: float) -> void:
 		zoom_in()
 	else:
 		zoom_out()
+		
+	if is_zoomed_in:
+		if shake_amount > 0:
+			shake_amount -= shake_decay * delta
+			print(shake_amount)
+			var shake_offset = Vector3(randf_range(-shake_intensity, shake_intensity), randf_range(-shake_intensity, shake_intensity), randf_range(-shake_intensity, shake_intensity)) * shake_amount
+			global_transform.origin += shake_offset
+		else:
+			global_transform.origin = global_transform.origin
+		
+func _input(event):
+	if event is InputEventMouseMotion:
+		rot_x += -event.relative.y * sensitivity
+		rot_y += -event.relative.x * sensitivity
+		rot_x = clampf(rot_x, deg_to_rad(-20), deg_to_rad(30))
+		rot_y = clampf(rot_y, deg_to_rad(-35), deg_to_rad(35))
+		rotation.x = rot_x
+		rotation.y = rot_y
+
+	if Input.is_action_pressed("shoot"):
+		shoot()
+		
+		if Input.is_action_pressed("zoom"):
+			shake_amount = 1.0
 
 # Function to zoom in
 func zoom_in():
@@ -46,7 +89,6 @@ func zoom_in():
 		fov = ZOOMED_FOV
 		is_zoomed_in = true
 		sensitivity = ZOOMED_SENSITIVITY
-		# Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 # Function to zoom out
 func zoom_out(): 
@@ -56,16 +98,9 @@ func zoom_out():
 		fov = NORMAL_FOV
 		is_zoomed_in = false
 		sensitivity = NORMAL_SENSITIVITY
-		# Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-func _input(event):
-	# if Input.is_action_pressed("zoom") and event is InputEventMouseMotion:
-	if event is InputEventMouseMotion:
-		rot_x += -event.relative.y * sensitivity
-		rot_y += -event.relative.x * sensitivity
-		rot_x = clampf(rot_x, deg_to_rad(-20), deg_to_rad(30))
-		rot_y = clampf(rot_y, deg_to_rad(-35), deg_to_rad(35))
-		rotation.x = rot_x
-		rotation.y = rot_y
-		#rotation.x += -event.relative.y * sensitivity
-		#rotation.y += -event.relative.x * sensitivity
+func shoot():
+	var bullet_instance = Bullet.instantiate()
+	get_tree().root.add_child(bullet_instance)
+	bullet_instance.global_transform = global_transform.translated(Vector3(0, -5, 0))
+	
