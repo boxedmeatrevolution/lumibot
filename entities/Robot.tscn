@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cae5y4l6ajbrh"]
+[gd_scene load_steps=11 format=3 uid="uid://cae5y4l6ajbrh"]
 
 [ext_resource type="Script" path="res://scripts/Robot.gd" id="1_fbasr"]
 [ext_resource type="Texture2D" uid="uid://dwnndoh1y1yok" path="res://sprites/RobotHead.png" id="2_d2pkk"]
@@ -98,10 +98,14 @@ tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = PackedFloat32Array(0.2, 1, 0, 0, 0, 1, 0.8, 1, 0, 0, -0.174, 0.985)
 
+[sub_resource type="Animation" id="Animation_d2kv5"]
+resource_name = "THROW"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hpss4"]
 _data = {
 "RESET": SubResource("Animation_s186h"),
 "STAND": SubResource("Animation_i8yq0"),
+"THROW": SubResource("Animation_d2kv5"),
 "WALK": SubResource("Animation_y2g3y")
 }
 

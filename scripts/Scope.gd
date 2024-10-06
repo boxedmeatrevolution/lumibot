@@ -55,5 +55,5 @@ func zoom_out():
 func _input(event):
 	# if Input.is_action_pressed("zoom") and event is InputEventMouseMotion:
 	if event is InputEventMouseMotion:
-		rotate_x(-event.relative.y * sensitivity)
-		rotate_y(-event.relative.x * sensitivity)
+		rotation.x += -event.relative.y * sensitivity
+		rotation.y += -event.relative.x * sensitivity
