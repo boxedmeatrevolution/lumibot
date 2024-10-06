@@ -2,7 +2,7 @@ extends Camera3D
 
 var normal_fov = 70.0
 var zoomed_fov = 20.0
-var sensitivity = 0.01
+var sensitivity = 0.001
 var is_zoomed_in = false
 
 @onready
@@ -55,4 +55,5 @@ func zoom_out():
 func _input(event):
 	# if Input.is_action_pressed("zoom") and event is InputEventMouseMotion:
 	if event is InputEventMouseMotion:
-		translate(Vector3(event.relative.x * sensitivity, -event.relative.y * sensitivity, 0))
+		rotate_x(-event.relative.y * sensitivity)
+		rotate_y(-event.relative.x * sensitivity)
