@@ -7,6 +7,9 @@ const ZOOMED_SENSITIVITY : float = 0.0004
 var sensitivity := NORMAL_SENSITIVITY
 var is_zoomed_in := false
 
+var rot_x : float = 0
+var rot_y : float = 0
+
 @onready var crosshair := $Crosshair
 
 @onready var scope := $Scope
@@ -58,5 +61,11 @@ func zoom_out():
 func _input(event):
 	# if Input.is_action_pressed("zoom") and event is InputEventMouseMotion:
 	if event is InputEventMouseMotion:
-		rotation.x += -event.relative.y * sensitivity
-		rotation.y += -event.relative.x * sensitivity
+		rot_x += -event.relative.y * sensitivity
+		rot_y += -event.relative.x * sensitivity
+		rot_x = clampf(rot_x, deg_to_rad(-20), deg_to_rad(30))
+		rot_y = clampf(rot_y, deg_to_rad(-35), deg_to_rad(35))
+		rotation.x = rot_x
+		rotation.y = rot_y
+		#rotation.x += -event.relative.y * sensitivity
+		#rotation.y += -event.relative.x * sensitivity
