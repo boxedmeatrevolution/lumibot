@@ -1,6 +1,7 @@
 extends Node3D
 
 const RocketScene := preload("res://entities/Rocket.tscn")
+const Building := preload("res://scripts/Building.gd")
 
 var velocity : Vector3 = Vector3(0, 0, 0)
 @onready var animation_player := $AnimationPlayer
@@ -31,3 +32,9 @@ func _process(delta: float) -> void:
 			state = State.STAND
 			animation_player.play("STAND", 0.5)
 			velocity = Vector3(0, 0, 0)
+
+func _on_area_entered(area: Area3D) -> void:
+	print("COLLISION")
+	if area.get_collision_layer_value(4):
+		var building : Building = area.get_parent()
+		building.demolish()

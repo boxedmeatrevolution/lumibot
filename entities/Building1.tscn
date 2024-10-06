@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://xgytm0x4vyxr"]
+
+[ext_resource type="Script" path="res://scripts/Building.gd" id="1_j8ga0"]
+[ext_resource type="Texture2D" uid="uid://cmrrn834ovu3t" path="res://sprites/Building1.png" id="2_2p2i8"]
+
+[node name="Building1" type="Node3D"]
+script = ExtResource("1_j8ga0")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+offset = Vector2(0, 480)
+shaded = true
+alpha_cut = 1
+texture = ExtResource("2_2p2i8")
+hframes = 2
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Area3D"]
+depth = 2.0
+polygon = PackedVector2Array(-1.49545, 0.813156, -0.640763, 5.65638, -1.48449, 7.90268, -1.39683, 9.41482, 1.39734, 9.55727, 1.75894, 9.18471, 1.1234, 8.14374, 1.68223, 6.0399, 0.444032, 0.144746, -1.34204, 0.122831)

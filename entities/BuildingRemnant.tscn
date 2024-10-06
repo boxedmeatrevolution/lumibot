@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://clial7k7n8ux2"]
+
+[ext_resource type="Script" path="res://scripts/BuildingRemnant.gd" id="1_pmj00"]
+
+[node name="BuildingRemnant" type="Node3D"]
+script = ExtResource("1_pmj00")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+offset = Vector2(0, 480)
+shaded = true
+alpha_cut = 1
