@@ -1,12 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5w1jp5aqndav"]
+[gd_scene load_steps=5 format=3 uid="uid://c5w1jp5aqndav"]
 
 [ext_resource type="Script" path="res://scripts/Scope.gd" id="1_6m20m"]
 [ext_resource type="PackedScene" uid="uid://cae5y4l6ajbrh" path="res://entities/Robot.tscn" id="1_34fhc"]
+[ext_resource type="PackedScene" uid="uid://d1vqh6jbo2bbf" path="res://entities/Crosshair.tscn" id="1_l3xyf"]
+[ext_resource type="PackedScene" uid="uid://dxnp70rlblhbb" path="res://entities/Scope.tscn" id="1_ywba2"]
 
 [node name="Main" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 script = ExtResource("1_6m20m")
+
+[node name="Scope" parent="Camera3D" instance=ExtResource("1_ywba2")]
+transform = Transform3D(0.08, -1.3323e-05, 4.08767e-06, 1.3323e-05, 0.08, 8.61623e-07, -4.08779e-06, -8.61051e-07, 0.08, 0, 0, -1)
+
+[node name="Crosshair" parent="Camera3D" instance=ExtResource("1_l3xyf")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, -1)
 
 [node name="Robot" parent="." instance=ExtResource("1_34fhc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
