@@ -5,6 +5,7 @@ const Building := preload("res://scripts/Building.gd")
 
 @onready var animation_player := $AnimationPlayer
 @onready var grab_point := $BodySprite/RightArmSprite/GrabPoint
+@onready var player : Node3D = owner.find_child("Camera3D")
 
 var velocity := Vector3.ZERO
 
@@ -24,8 +25,9 @@ func _process(delta: float) -> void:
 		var rocket = RocketScene.instantiate()
 		get_parent().add_child(rocket)
 		rocket.global_position = global_position
+		rocket.target = player.global_position
 	if building != null && randf() > exp(-delta / 3):
-		building.throw(get_parent())
+		building.throw(get_parent(), player.global_position + 1 * Vector3.DOWN)
 		building = null
 	if state == State.STAND:
 		if randf() > exp(-delta / 3):
@@ -42,7 +44,7 @@ func _process(delta: float) -> void:
 func _on_area_entered(area: Area3D) -> void:
 	if area.get_collision_layer_value(4):
 		var b : Building = area.get_parent()
-		if building == null && randf() > 0.0:
+		if building == null && randf() > 0.5:
 			building = b
 			b.pickup(grab_point)
 		else:

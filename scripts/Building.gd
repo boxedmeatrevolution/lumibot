@@ -3,8 +3,8 @@ extends Node3D
 const BuildingRemnantScene := preload("res://entities/BuildingRemnant.tscn")
 
 const PICKUP_TIME : float = 0.5
-const GRAVITY : float = 0.2
-const THROW_SPEED : float = 2.0
+const GRAVITY : float = 0.11
+const THROW_SPEED : float = 2.5
 
 @onready var sprite := $Sprite3D
 @onready var area := $Area3D
@@ -41,14 +41,14 @@ func pickup(parent : Node3D):
 		state = State.PICKUP
 		reparent(parent, true)
 
-func throw(parent : Node3D):
+func throw(parent : Node3D, target : Vector3):
 	if state == State.PICKUP:
 		area.set_collision_layer_value(6, false)
 		area.set_collision_layer_value(7, true)
 		state = State.THROW
 		reparent(parent, true)
 		throw_pos_1 = global_position
-		throw_pos_2 = Vector3(0, 10, 0)
+		throw_pos_2 = target
 		throw_dist = 0
 		angular_velocity = deg_to_rad(randf_range(-20, 20))
 
@@ -67,7 +67,8 @@ func _process(delta: float) -> void:
 		var c := (throw_pos_2.y - throw_pos_1.y) / throw_delta.length() / (0.5 * g)
 		var throw_height := -0.5 * g * throw_dist * (throw_dist - throw_delta.length() - c)
 		global_position = throw_pos_1 + Vector3.UP * throw_height + throw_delta.normalized() * throw_dist
-		transform = transform.rotated(Vector3(0, 0, 1), angular_velocity * delta)
+		var offset_transform := Transform3D().translated(grab_point.position)
+		transform *= offset_transform * Transform3D().rotated(Vector3(0, 0, 1), angular_velocity * delta) * offset_transform.affine_inverse()
 		if (throw_dist > throw_delta.length()):
 			queue_free()
 		throw_dist += THROW_SPEED * delta
