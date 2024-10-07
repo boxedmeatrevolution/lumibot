@@ -1,56 +1,49 @@
-[gd_scene load_steps=8 format=3 uid="uid://qxa7b1rm0oe5"]
+[gd_scene load_steps=6 format=3 uid="uid://bv8nh1yttblng"]
 
 [ext_resource type="Script" path="res://scripts/Bullet.gd" id="1_h41d5"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_818x5"]
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l6up3"]
-lifetime_randomness = 0.4
-direction = Vector3(0, 0, 0)
-spread = 0.0
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
 gravity = Vector3(0, 0, 0)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixuf8"]
-transparency = 1
-albedo_color = Color(1, 0.662745, 0.00784314, 0.666667)
-
-[sub_resource type="QuadMesh" id="QuadMesh_ru7ip"]
-material = SubResource("StandardMaterial3D_ixuf8")
-size = Vector2(0.1, 0.1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jg2pv"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_v7icb"]
-transparency = 1
-albedo_color = Color(1, 1, 0, 0.196078)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_818x5"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+emission_energy_multiplier = 10.0
+disable_receive_shadows = true
 
 [node name="Bullet" type="Node3D"]
+script = ExtResource("1_h41d5")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_mask = 26
-script = ExtResource("1_h41d5")
-
-[node name="TrailGPUParticles3D" type="GPUParticles3D" parent="Area3D"]
-transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
-amount = 20
-trail_enabled = true
-trail_lifetime = 2.0
-process_material = SubResource("ParticleProcessMaterial_l6up3")
-draw_pass_1 = SubResource("QuadMesh_ru7ip")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_jg2pv")
-surface_material_override/0 = SubResource("ORMMaterial3D_v7icb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_818x5")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Area3D"]
+[node name="TrailGPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 20
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_l6up3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_jg2pv")
+skeleton = NodePath("../Area3D")
+surface_material_override/0 = SubResource("ORMMaterial3D_v7icb")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_color = Color(1, 1, 0, 1)
 light_energy = 0.3
 light_size = 0.1
 light_specular = 1.0
 
-[connection signal="area_entered" from="Area3D" to="Area3D" method="_on_area_entered"]
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_entered"]
