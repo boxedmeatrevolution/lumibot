@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://c5w1jp5aqndav"]
+[gd_scene load_steps=29 format=3 uid="uid://c5w1jp5aqndav"]
 
 [ext_resource type="PackedScene" uid="uid://cae5y4l6ajbrh" path="res://entities/Robot.tscn" id="1_34fhc"]
 [ext_resource type="Script" path="res://scripts/Scope.gd" id="1_hsoda"]
 [ext_resource type="PackedScene" uid="uid://xgytm0x4vyxr" path="res://entities/Building1.tscn" id="2_3hcdi"]
 [ext_resource type="PackedScene" uid="uid://875s58aqkj0m" path="res://entities/Scope.tscn" id="3_mhdjc"]
+[ext_resource type="Shader" path="res://shaders/Greyscale.gdshader" id="3_uor6p"]
 [ext_resource type="PackedScene" uid="uid://drsxmxgwgafc8" path="res://entities/Cloud.tscn" id="4_edb36"]
 [ext_resource type="PackedScene" uid="uid://dw4kbcrlkoquw" path="res://entities/Building2.tscn" id="5_pdc1a"]
 [ext_resource type="PackedScene" uid="uid://bopp5b7ximg8j" path="res://entities/Building3.tscn" id="6_u7yh4"]
@@ -35,6 +36,17 @@ glow_enabled = true
 fog_density = 0.001
 volumetric_fog_density = 0.001
 volumetric_fog_sky_affect = 0.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_t3ydd"]
+radius = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_37mgd"]
+render_priority = 0
+shader = ExtResource("3_uor6p")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3o7is"]
+material = SubResource("ShaderMaterial_37mgd")
+orientation = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ntjg"]
 transparency = 2
@@ -95,6 +107,18 @@ transform = Transform3D(0.09, 0, 0, 0, 0.09, 0, 0, 0, 0.09, 0, 0, -1)
 [node name="Timer" type="Timer" parent="Camera3D"]
 wait_time = 1.75
 one_shot = true
+
+[node name="Area3D" type="Area3D" parent="Camera3D"]
+collision_layer = 128
+collision_mask = 80
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/Area3D"]
+shape = SubResource("SphereShape3D_t3ydd")
+
+[node name="GreyscaleMesh" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.9)
+visible = false
+mesh = SubResource("PlaneMesh_3o7is")
 
 [node name="Robot" parent="." instance=ExtResource("1_34fhc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.97953, 7.40414, -34.2069)
@@ -505,3 +529,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5287, 68.0499, 0)
 
 [node name="Cloud3" parent="Clouds" instance=ExtResource("4_edb36")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -183.453, 26.1573, 0)
+
+[connection signal="area_entered" from="Camera3D/Area3D" to="Camera3D" method="_on_area_entered"]

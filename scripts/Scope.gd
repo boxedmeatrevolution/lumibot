@@ -7,14 +7,13 @@ const ZOOMED_SENSITIVITY : float = 0.0001
 const NORMAL_SCOPE_SCALE : float = 0.15
 const ZOOMED_SCOPE_SCALE : float = 0.3
 const RECOIL_DECAY_TIME : float = 0.2
+const SHAKE_DECAY_TIME : float = 0.1
 
 var sensitivity := NORMAL_SENSITIVITY
 var is_zoomed_in := false
 var can_shoot = true
 
 # Camera shake
-var shake_amount = 0.0
-var shake_decay = 10.0
 var shake_intensity = 0.75
 
 const Bullet = preload("res://entities/Bullet.tscn")
@@ -22,9 +21,16 @@ const Bullet = preload("res://entities/Bullet.tscn")
 var rot_x : float = 0
 var rot_y : float = 0
 var rot_x_recoil : float = 0
+var rot_x_shake : float = 0
+var rot_y_shake : float = 0
+
+var rot_z : float = 0
+
+var dead := false
 
 @onready var scope = $Scope
 @onready var timer = $Timer
+@onready var greyscale := $GreyscaleMesh
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -58,34 +64,32 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("zoom"):
+	if !dead && Input.is_action_pressed("zoom"):
 		zoom_in()
 	else:
 		zoom_out()
 		
 	if is_zoomed_in:
 		rot_x_recoil *= exp(-delta / RECOIL_DECAY_TIME)
-		#if shake_amount > 0:
-			#shake_amount -= shake_decay * delta
-			#var shake_offset = Vector3(randf_range(-shake_intensity, shake_intensity), randf_range(-shake_intensity, shake_intensity), randf_range(-shake_intensity, shake_intensity)) * shake_amount
-			#global_transform.origin += shake_offset
-		#else:
-			#global_transform.origin = global_transform.origin
-	rotation.x = rot_x + rot_x_recoil
-	rotation.y = rot_y
-		
+	shake_intensity *= exp(-delta / SHAKE_DECAY_TIME)
+	rot_x_shake = deg_to_rad(randf_range(-shake_intensity, shake_intensity) * fov / 90)
+	rot_y_shake = deg_to_rad(randf_range(-shake_intensity, shake_intensity) * fov / 90)
+	rotation.x = rot_x + rot_x_recoil + rot_x_shake
+	rotation.y = rot_y + rot_y_shake
+	rotation.z = rot_z
+	
+	if dead:
+		rot_z = (rot_z + deg_to_rad(80)) * exp(-delta / 2) - deg_to_rad(80)
 func _input(event):
-	if event is InputEventMouseMotion:
-		rot_x += -event.relative.y * sensitivity
-		rot_y += -event.relative.x * sensitivity
-		rot_x = clampf(rot_x, deg_to_rad(-20), deg_to_rad(30))
-		rot_y = clampf(rot_y, deg_to_rad(-35), deg_to_rad(35))
+	if !dead:
+		if event is InputEventMouseMotion:
+			rot_x += -event.relative.y * sensitivity
+			rot_y += -event.relative.x * sensitivity
+			rot_x = clampf(rot_x, deg_to_rad(-20), deg_to_rad(30))
+			rot_y = clampf(rot_y, deg_to_rad(-35), deg_to_rad(35))
 
-	if Input.is_action_pressed("shoot") and can_shoot:
-		shoot()
-		
-		if Input.is_action_pressed("zoom"):
-			shake_amount = 1.0
+		if Input.is_action_pressed("shoot") and can_shoot:
+			shoot()
 
 # Function to zoom in
 func zoom_in():
@@ -114,3 +118,12 @@ func shoot():
 
 func _on_Timer_timeout():
 	can_shoot = true
+
+func shake(intensity : float) -> void:
+	shake_intensity = intensity
+
+func _on_area_entered(area: Area3D) -> void:
+	area.get_parent().queue_free()
+	dead = true
+	greyscale.visible = true
+	shake(10)
