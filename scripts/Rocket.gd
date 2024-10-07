@@ -2,6 +2,7 @@ extends Node3D
 
 const SPEED : float = 2
 const FADE_DURATION : float = 3.0
+const AUDIO_FADE : float = 20.0
 
 @onready var mesh := $MeshInstance3D
 @onready var gpu_particles := $GPUParticles3D
@@ -18,6 +19,8 @@ var gpu_alpha : float = 1
 var shot_down : bool = false
 var on_floor : bool = false
 
+var rocket_player = AudioStreamPlayer.new()
+
 func _ready() -> void:
 	$ExplosionParticles3D.visible = false
 	var theta := deg_to_rad(randf_range(-60, 60))
@@ -29,12 +32,19 @@ func _ready() -> void:
 	mesh.set_surface_override_material(0, new_surface)
 	$DestroyTimer.connect("timeout", Callable(self, "_on_DestroyTimer_timeout"))
 	Global.rocket_count += 1
+	
+	# Add audio
+	add_child(rocket_player)
+	rocket_player.stream = load("res://sounds/flying_rocket.ogg")
+	rocket_player.connect("finished", Callable(self,"_on_loop_sound"))
+	rocket_player.play()
 
 func _process(delta: float) -> void:
 	if not on_floor:
 		if shot_down:
 			velocity += velocity_down
 			global_position += velocity * delta
+			rocket_player.volume_db -= AUDIO_FADE * delta
 		else:
 			time += delta
 			var r := global_position - target
@@ -77,3 +87,6 @@ func _on_Timer_timeout():
 	else:
 		surface.albedo_color = Color(0, 131, 206, alpha)
 		timer.start()
+
+func _on_loop_sound():
+	rocket_player.play()
