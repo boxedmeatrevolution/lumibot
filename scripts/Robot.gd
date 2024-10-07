@@ -3,10 +3,10 @@ extends Node3D
 const RocketScene := preload("res://entities/Rocket.tscn")
 const Building := preload("res://scripts/Building.gd")
 const Player := preload("res://scripts/Scope.gd")
-const SMALL_STOMP_DB : float = 15.0
-const LARGE_STOMP_DB : float = 30.0
+const SMALL_STOMP_DB : float = 10.0
+const LARGE_STOMP_DB : float = 15.0
 
-const WHIRL_START_DB : float = 30.0
+const WHIRL_START_DB : float = 20.0
 const WHIRL_END_DB : float = 10.0
 const WHIRL_DELTA_DB : float = -1
 
