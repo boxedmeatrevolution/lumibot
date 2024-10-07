@@ -4,7 +4,11 @@ const RocketScene := preload("res://entities/Rocket.tscn")
 const Building := preload("res://scripts/Building.gd")
 const Player := preload("res://scripts/Scope.gd")
 const SMALL_STOMP_DB : float = 15.0
-const LARGE_STOMP_DB : float = 60.0
+const LARGE_STOMP_DB : float = 30.0
+
+const WHIRL_START_DB : float = 30.0
+const WHIRL_END_DB : float = 10.0
+const WHIRL_DELTA_DB : float = -1
 
 @onready var animation_player := $AnimationPlayer
 @onready var grab_point := $GrabPoint
@@ -16,6 +20,7 @@ var state_timer : float
 
 var building_break_player = AudioStreamPlayer.new()
 var stomp_player = AudioStreamPlayer.new()
+var whirl_player = AudioStreamPlayer.new()
 
 const STATE_MIN_TIME : float = 1.5
 const STATE_MAX_TIME : float = 5
@@ -39,6 +44,9 @@ func _ready() -> void:
 	building_break_player.stream = load("res://sounds/building_demo.ogg")
 	add_child(stomp_player)
 	stomp_player.stream = load("res://sounds/stomp.ogg")
+	add_child(whirl_player)
+	whirl_player.stream = load("res://sounds/whir_windup.ogg")
+	whirl_player.connect("finished", Callable(self, "_on_whirl_loop"))
 
 func _process(delta: float) -> void:
 	state_timer += delta
@@ -50,6 +58,8 @@ func _process(delta: float) -> void:
 		if building != null && at_min_time && (at_max_time || randf() > exp(-delta / 3)):
 			state = State.THROW
 			state_timer = 0
+			whirl_player.volume_db = WHIRL_START_DB
+			whirl_player.play()
 			animation_player.play("THROW", 0.5, 0.4)
 		if building == null && Global.rocket_count <= 6 && at_min_time && (at_max_time || randf() > exp(-delta / 3)):
 			state = State.BARRAGE
@@ -73,6 +83,9 @@ func _process(delta: float) -> void:
 			stomp_small()
 			velocity = Vector3.ZERO
 	elif state == State.THROW || state == State.BARRAGE:
+		if state == State.THROW:
+			if whirl_player.volume_db > WHIRL_END_DB:
+				whirl_player.volume_db += WHIRL_DELTA_DB * delta
 		if !animation_player.is_playing():
 			state = State.STAND
 			state_timer = 0
@@ -107,6 +120,10 @@ func _on_area_entered(area: Area3D) -> void:
 		else:
 			b.shoot(100)
 			stomp_large()
+			
+func _on_whirl_loop():
+	if state == State.THROW:
+		whirl_player.play()
 
 func stomp_small() -> void:
 	player.shake(2)
