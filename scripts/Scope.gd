@@ -48,26 +48,25 @@ func _ready() -> void:
 	# Set camera zoom input
 	var mouseButtonRight = InputEventMouseButton.new()
 	mouseButtonRight.set_button_index(MOUSE_BUTTON_RIGHT)
-
-	var keyCtrl = InputEventKey.new()
-	keyCtrl.physical_keycode = KEY_CTRL
-
+	var keyShift = InputEventKey.new()
+	keyShift.physical_keycode = KEY_SHIFT
+	
 	InputMap.add_action("zoom")
 	InputMap.action_add_event("zoom", mouseButtonRight)
-	InputMap.action_add_event("zoom", keyCtrl)
+	InputMap.action_add_event("zoom", keyShift)
 
 	# Set shooting input
 	var mouseButtonLeft = InputEventMouseButton.new()
 	mouseButtonLeft.set_button_index(MOUSE_BUTTON_LEFT)
 	
-	var keyShift = InputEventKey.new()
-	keyShift.physical_keycode = KEY_SHIFT
 	var keyEescape = InputEventKey.new()
 	keyEescape.physical_keycode = KEY_ESCAPE
+	var keyZed = InputEventKey.new()
+	keyZed.physical_keycode = KEY_Z
 	
 	InputMap.add_action("shoot")
 	InputMap.action_add_event("shoot", mouseButtonLeft)
-	InputMap.action_add_event("shoot", keyShift)
+	InputMap.action_add_event("shoot", keyZed)
 	InputMap.add_action("exit")
 	InputMap.action_add_event("exit", keyEescape)
 	
