@@ -24,7 +24,7 @@ var rot_y : float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	timer.connect("timeout", _on_Timer_timeout)
+	timer.connect("timeout", Callable(self, "_on_Timer_timeout"))
 	
 	fov = NORMAL_FOV
 	scope.visible = false
@@ -64,7 +64,6 @@ func _process(delta: float) -> void:
 	if is_zoomed_in:
 		if shake_amount > 0:
 			shake_amount -= shake_decay * delta
-			print(shake_amount)
 			var shake_offset = Vector3(randf_range(-shake_intensity, shake_intensity), randf_range(-shake_intensity, shake_intensity), randf_range(-shake_intensity, shake_intensity)) * shake_amount
 			global_transform.origin += shake_offset
 		else:
@@ -79,7 +78,7 @@ func _input(event):
 		rotation.x = rot_x
 		rotation.y = rot_y
 
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_pressed("shoot") and can_shoot:
 		shoot()
 		
 		if Input.is_action_pressed("zoom"):
@@ -104,12 +103,11 @@ func zoom_out():
 		sensitivity = NORMAL_SENSITIVITY
 
 func shoot():
-	if can_shoot:
-		var bullet_instance = Bullet.instantiate()
-		get_tree().root.add_child(bullet_instance)
-		bullet_instance.global_transform = global_transform.translated(Vector3(0, -5, 0))
-		can_shoot = false
-		timer.start()
+	var bullet_instance = Bullet.instantiate()
+	get_tree().root.add_child(bullet_instance)
+	bullet_instance.global_transform = global_transform.translated(Vector3(0, -5, 0))
+	can_shoot = false
+	timer.start()
 
 func _on_Timer_timeout():
 	can_shoot = true

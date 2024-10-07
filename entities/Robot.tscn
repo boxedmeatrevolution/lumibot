@@ -64,6 +64,9 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0)
 
+[sub_resource type="Animation" id="Animation_d2kv5"]
+resource_name = "THROW"
+
 [sub_resource type="Animation" id="Animation_y2g3y"]
 resource_name = "walk"
 length = 2.0
@@ -97,9 +100,6 @@ tracks/3/path = NodePath("BodySprite/RightLegSprite")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = PackedFloat32Array(0.2, 1, 0, 0, 0, 1, 0.8, 1, 0, 0, -0.174, 0.985)
-
-[sub_resource type="Animation" id="Animation_d2kv5"]
-resource_name = "THROW"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hpss4"]
 _data = {
