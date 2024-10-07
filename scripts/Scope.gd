@@ -4,8 +4,8 @@ const NORMAL_FOV : float = 40
 const ZOOMED_FOV : float = 15
 const NORMAL_SENSITIVITY : float = 0.002
 const ZOOMED_SENSITIVITY : float = 0.0004
-const NORMAL_SCOPE_SCALE : float = 0.2
-const ZOOMED_SCOPE_SCALE : float = 0.7
+const NORMAL_SCOPE_SCALE : float = 0.15
+const ZOOMED_SCOPE_SCALE : float = 0.6
 
 var sensitivity := NORMAL_SENSITIVITY
 var is_zoomed_in := false
