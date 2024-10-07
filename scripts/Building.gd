@@ -3,8 +3,8 @@ extends Node3D
 const BuildingRemnantScene := preload("res://entities/BuildingRemnant.tscn")
 
 const PICKUP_TIME : float = 0.5
-const GRAVITY : float = 0.11
-const THROW_SPEED : float = 2.5
+const GRAVITY : float = 0.15
+const THROW_SPEED : float = 3
 
 @onready var sprite := $Sprite3D
 @onready var area := $Area3D

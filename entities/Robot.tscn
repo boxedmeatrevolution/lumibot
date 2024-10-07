@@ -28,7 +28,7 @@ tracks/1/enabled = true
 tracks/1/path = NodePath("BodySprite")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 7.2468, 0)
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0)
 tracks/2/type = "rotation_3d"
 tracks/2/imported = false
 tracks/2/enabled = true
@@ -78,9 +78,6 @@ tracks/8/path = NodePath("BodySprite/RightLegSprite")
 tracks/8/interp = 2
 tracks/8/loop_wrap = true
 tracks/8/keys = PackedFloat32Array(0, 1, 0, 0, 0.0107046, 0.999943)
-
-[sub_resource type="Animation" id="Animation_d2kv5"]
-resource_name = "THROW"
 
 [sub_resource type="Animation" id="Animation_xfm00"]
 resource_name = "STAND"
@@ -162,83 +159,166 @@ tracks/0/enabled = true
 tracks/0/path = NodePath("BodySprite")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.066, 0.998, 0.3, 1, 0, 0, 0, 1, 0.7, 1, 0, 0, -0.061, 0.998, 1, 1, 0, 0, 0, 1)
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.4, 1, 0, 0, -0.061, 0.998, 0.7, 1, 0, 0, 0, 1, 1.1, 1, 0, 0, 0.066, 0.998)
 tracks/1/type = "position_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("BodySprite")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.3, 1, 0, 1.5, 0, 0.7, 1, 0, 0, 0, 1, 1, 0, 1.5, 0)
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 1.5, 0, 0.4, 1, 0, 0, 0, 0.7, 1, 0, 1.5, 0, 1.1, 1, 0, 0, 0)
 tracks/2/type = "rotation_3d"
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/path = NodePath("BodySprite/HeadSprite")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, -0.087, 0.996, 0.3, 1, 0, 0, 0.0581913, 0.998305, 0.7, 1, 0, 0, 0.155917, 0.98777, 1, 1, 0, 0, 0.0581913, 0.998305)
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0.0581913, 0.998305, 0.4, 1, 0, 0, 0.155917, 0.98777, 0.7, 1, 0, 0, 0.0581913, 0.998305, 1.1, 1, 0, 0, -0.087, 0.996)
 tracks/3/type = "rotation_3d"
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/path = NodePath("BodySprite/LeftArmSprite")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, -0.0875817, 0.996157, 0.3, 1, 0, 0, -0.35642, 0.934326, 0.7, 1, 0, 0, 0.0519872, 0.998648, 1, 1, 0, 0, -0.35642, 0.934326)
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, -0.35642, 0.934326, 0.4, 1, 0, 0, -0.017, 1, 0.7, 1, 0, 0, -0.35642, 0.934326, 1.1, 1, 0, 0, -0.0875817, 0.996157)
 tracks/4/type = "rotation_3d"
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/path = NodePath("BodySprite/LeftArmSprite/LeftHandSprite")
 tracks/4/interp = 2
 tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, 0, 0, -0.104207, 0.994556, 0.3, 1, 0, 0, 0.11544, 0.993314, 0.7, 1, 0, 0, 0.0371844, 0.999308, 1, 1, 0, 0, 0.11544, 0.993314)
+tracks/4/keys = PackedFloat32Array(0, 1, 0, 0, 0.11544, 0.993314, 0.4, 1, 0, 0, 0.0371844, 0.999308, 0.7, 1, 0, 0, 0.11544, 0.993314, 1.1, 1, 0, 0, -0.104207, 0.994556)
 tracks/5/type = "rotation_3d"
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/path = NodePath("BodySprite/RightArmSprite")
 tracks/5/interp = 2
 tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0, 1, 0, 0, -0.0928224, 0.995683, 0.3, 1, 0, 0, 0.308552, 0.951208, 0.7, 1, 0, 0, 0.210353, 0.977626, 1, 1, 0, 0, 0.308552, 0.951208)
+tracks/5/keys = PackedFloat32Array(0, 1, 0, 0, 0.308552, 0.951208, 0.4, 1, 0, 0, 0.210353, 0.977626, 0.7, 1, 0, 0, 0.308552, 0.951208, 1.1, 1, 0, 0, 0.017, 1)
 tracks/6/type = "rotation_3d"
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/path = NodePath("BodySprite/RightArmSprite/RightHandSprite")
 tracks/6/interp = 2
 tracks/6/loop_wrap = true
-tracks/6/keys = PackedFloat32Array(0, 1, 0, 0, 3.72529e-09, 1, 0.3, 1, 0, 0, 0.0288113, 0.999585, 0.7, 1, 0, 0, 0.11518, 0.993344, 1, 1, 0, 0, 0.0288113, 0.999585)
+tracks/6/keys = PackedFloat32Array(0, 1, 0, 0, 0.0288113, 0.999585, 0.4, 1, 0, 0, 0.11518, 0.993344, 0.7, 1, 0, 0, 0.0288113, 0.999585, 1.1, 1, 0, 0, 3.72529e-09, 1)
 tracks/7/type = "rotation_3d"
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/path = NodePath("BodySprite/LeftLegSprite")
 tracks/7/interp = 2
 tracks/7/loop_wrap = true
-tracks/7/keys = PackedFloat32Array(0, 1, 0, 0, 0.397308, 0.917685, 0.3, 1, 0, 0, 0.0297624, 0.999557, 0.7, 1, 0, 0, 0.150321, 0.988638, 1, 1, 0, 0, 0.0297624, 0.999557)
+tracks/7/keys = PackedFloat32Array(0, 1, 0, 0, -0.0960019, 0.995381, 0.4, 1, 0, 0, 0.150321, 0.988638, 0.7, 1, 0, 0, -0.0960019, 0.995381, 1.1, 1, 0, 0, 0.397308, 0.917685)
 tracks/8/type = "rotation_3d"
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/path = NodePath("BodySprite/RightLegSprite")
 tracks/8/interp = 2
 tracks/8/loop_wrap = true
-tracks/8/keys = PackedFloat32Array(0, 1, 0, 0, -0.150418, 0.988622, 0.3, 1, 0, 0, -0.0295556, 0.999563, 0.7, 1, 0, 0, -0.377132, 0.926159, 1, 1, 0, 0, -0.0295556, 0.999563)
+tracks/8/keys = PackedFloat32Array(0, 1, 0, 0, 0.0728351, 0.997344, 0.4, 1, 0, 0, -0.377132, 0.926159, 0.7, 1, 0, 0, 0.0728351, 0.997344, 1.1, 1, 0, 0, -0.150418, 0.988622)
+
+[sub_resource type="Animation" id="Animation_n3vpv"]
+resource_name = "THROW"
+length = 9.5
+step = 0.05
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BodySprite")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -0.017, 1)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BodySprite")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BodySprite/HeadSprite")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0.017, 1, 2.1, 1, 0, 0, 0.213907, 0.976854, 3.3, 1, 0, 0, -0.210038, 0.977693, 3.9, 1, 0, 0, 0.213907, 0.976854, 4.4, 1, 0, 0, -0.210038, 0.977693, 4.8, 1, 0, 0, 0.213907, 0.976854, 5.1, 1, 0, 0, -0.210038, 0.977693, 5.45, 1, 0, 0, 0.213907, 0.976854, 5.75, 1, 0, 0, -0.210038, 0.977693, 6.05, 1, 0, 0, 0.213907, 0.976854, 6.35, 1, 0, 0, -0.210038, 0.977693, 6.85, 1, 0, 0, 0.213907, 0.976854, 7.7, 1, 0, 0, -0.210038, 0.977693, 8.75, 1, 0, 0, 0.213907, 0.976854, 9.5, 1, 0, 0, 0.017, 1)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BodySprite/LeftArmSprite")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0.015625, 1, 0, 0, -0.199, 0.98, 0.7, 1, 0, 0, 0.948, -0.317, 1.5, 1, 0, 0, 0.749, 0.663, 2.1, 1, 0, 0, -0.199, 0.98, 2.6, 1, 0, 0, 0.948, -0.317, 3, 1, 0, 0, 0.749, 0.663, 3.3, 1, 0, 0, -0.199, 0.98, 3.5, 1, 0, 0, 0.948, -0.317, 3.7, 1, 0, 0, 0.749, 0.663, 3.9, 1, 0, 0, -0.199, 0.98, 4.05, 1, 0, 0, 0.948, -0.317, 4.2, 1, 0, 0, 0.749, 0.663, 4.35, 1, 0, 0, -0.199, 0.98, 4.5, 1, 0, 0, 0.948, -0.317, 4.6, 1, 0, 0, 0.749, 0.663, 4.7, 1, 0, 0, -0.199, 0.98, 4.8, 1, 0, 0, 0.948, -0.317, 4.9, 1, 0, 0, 0.749, 0.663, 5, 1, 0, 0, -0.199, 0.98, 5.1, 1, 0, 0, 0.948, -0.317, 5.2, 1, 0, 0, 0.749, 0.663, 5.3, 1, 0, 0, -0.199, 0.98, 5.4, 1, 0, 0, 0.948, -0.317, 5.5, 1, 0, 0, 0.749, 0.663, 5.6, 1, 0, 0, -0.199, 0.98, 5.7, 1, 0, 0, 0.948, -0.317, 5.8, 1, 0, 0, 0.749, 0.663, 5.9, 1, 0, 0, -0.199, 0.98, 6, 1, 0, 0, 0.948, -0.317, 6.1, 1, 0, 0, 0.749, 0.663, 6.2, 1, 0, 0, -0.199, 0.98, 6.3, 1, 0, 0, 0.948, -0.317, 6.4, 1, 0, 0, 0.749, 0.663, 8.8, 1, 0, 0, 0.0181769, 0.999835, 9.5, 1, 0, 0, -0.199, 0.98)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BodySprite/LeftArmSprite/LeftHandSprite")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0.015625, 1, 0, 0, -0.131, 0.991)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BodySprite/RightArmSprite")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0, 0, 0.216, 0.976, 0.6, 1, 0, 0, 0.954, 0.301, 1.4, 1, 0, 0, 0.737, -0.676, 2, 1, 0, 0, 0.216, 0.976, 2.5, 1, 0, 0, 0.954, 0.301, 2.9, 1, 0, 0, 0.737, -0.676, 3.2, 1, 0, 0, 0.216, 0.976, 3.4, 1, 0, 0, 0.954, 0.301, 3.6, 1, 0, 0, 0.737, -0.676, 3.8, 1, 0, 0, 0.216, 0.976, 3.95, 1, 0, 0, 0.954, 0.301, 4.1, 1, 0, 0, 0.737, -0.676, 4.25, 1, 0, 0, 0.216, 0.976, 4.4, 1, 0, 0, 0.954, 0.301, 4.5, 1, 0, 0, 0.737, -0.676, 4.6, 1, 0, 0, 0.216, 0.976, 4.7, 1, 0, 0, 0.954, 0.301, 4.8, 1, 0, 0, 0.737, -0.676, 4.9, 1, 0, 0, 0.216, 0.976, 5, 1, 0, 0, 0.954, 0.301, 5.1, 1, 0, 0, 0.737, -0.676, 5.2, 1, 0, 0, 0.216, 0.976, 5.3, 1, 0, 0, 0.954, 0.301, 5.4, 1, 0, 0, 0.737, -0.676, 5.5, 1, 0, 0, 0.216, 0.976, 5.6, 1, 0, 0, 0.954, 0.301, 5.7, 1, 0, 0, 0.737, -0.676, 5.8, 1, 0, 0, 0.216, 0.976, 5.9, 1, 0, 0, 0.954, 0.301, 6, 1, 0, 0, 0.737, -0.676, 6.1, 1, 0, 0, 0.216, 0.976, 6.2, 1, 0, 0, 0.954, 0.301, 6.3, 1, 0, 0, 0.737, -0.676, 8.7, 1, 0, 0, 0.0906947, 0.995879, 9.5, 1, 0, 0, 0.216, 0.976)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BodySprite/RightArmSprite/RightHandSprite")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 0, 0, 0.129877, 0.99153)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BodySprite/LeftLegSprite")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0, 0, 0.017, 1)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BodySprite/RightLegSprite")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, 0, 0, 0.017, 1)
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(6.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"throw_building"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hpss4"]
 _data = {
 "RESET": SubResource("Animation_s186h"),
 "STAND": SubResource("Animation_xfm00"),
-"THROW": SubResource("Animation_d2kv5"),
+"THROW": SubResource("Animation_n3vpv"),
 "WALK": SubResource("Animation_0hy21")
 }
 
 [node name="Robot" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
 script = ExtResource("1_fbasr")
 
 [node name="BodySprite" type="Sprite3D" parent="."]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 7.2468, 0)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 shaded = true
 alpha_cut = 1
 texture = ExtResource("3_0xm5g")
 
 [node name="HeadSprite" type="Sprite3D" parent="BodySprite"]
-transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0.121882, 4.36749, 0.5)
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0.122, 4.367, 0.1)
 offset = Vector2(-20, 140)
 shaded = true
 alpha_cut = 1
@@ -281,7 +361,7 @@ collision_mask = 8
 polygon = PackedVector2Array(1.74125, -2.47595, 3.02071, -1.02321, 3.83874, -1.63201, 4.55509, -2.52241, 5.04285, -3.77906, 4.7185, -4.05587, 4.2564, -3.91707, 3.89669, -4.24452, 3.33527, -3.91131, 3.04804, -4.00761, 1.82541, -2.76976)
 
 [node name="RightArmSprite" type="Sprite3D" parent="BodySprite"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3038, 2.75794, 0.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3038, 2.75793, 0.2)
 offset = Vector2(-120, -90)
 shaded = true
 alpha_cut = 1
@@ -295,7 +375,7 @@ collision_mask = 8
 polygon = PackedVector2Array(0.447304, -1.06034, -0.815052, 0.767755, -1.5723, 0.380374, -2.64461, -0.913928, -2.96572, -1.64286, -2.18846, -2.46022, -1.38912, -2.38587, -1.02841, -1.89667, -0.274761, -1.8658, 0.291715, -1.41678)
 
 [node name="RightHandSprite" type="Sprite3D" parent="BodySprite/RightArmSprite"]
-transform = Transform3D(0.999999, -7.45058e-09, 0, 7.45058e-09, 0.999999, 0, 0, 0, 1, -2.35704, -1.68111, 0.2)
+transform = Transform3D(0.999999, -7.45057e-09, 0, 7.45057e-09, 0.999999, 0, 0, 0, 1, -2.35704, -1.68111, 0.2)
 offset = Vector2(-100, -100)
 shaded = true
 alpha_cut = 1
@@ -310,7 +390,7 @@ collision_mask = 8
 polygon = PackedVector2Array(3.01495, -2.45581, 1.85672, -1.06965, 1.26653, -1.28364, 0.196427, -2.48877, -0.281949, -3.67902, -0.0922108, -4.01847, 0.497199, -3.93553, 0.807161, -4.26565, 1.38315, -3.94209, 1.71473, -3.98322, 2.92129, -2.78393)
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="BodySprite/RightArmSprite/RightHandSprite"]
-transform = Transform3D(0.8137, 0.581286, 0, -0.581286, 0.8137, 0, 0, 0, 1, -1.57643, -1.90036, 0)
+transform = Transform3D(0.8137, 0.581286, 0, -0.581286, 0.8137, 0, 0, 0, 1, -1.576, -1.9, 0.5)
 remote_path = NodePath("../../../../GrabPoint")
 update_scale = false
 
@@ -348,7 +428,7 @@ collision_mask = 8
 polygon = PackedVector2Array(1.41601, -1.66802, 3.3744, -1.70111, 2.81414, -4.35958, 3.45771, -4.96995, 3.52217, -5.47675, 1.2016, -5.44024, 1.02397, -5.00025, 1.80378, -4.32306)
 
 [node name="RightLegSprite" type="Sprite3D" parent="BodySprite"]
-transform = Transform3D(0.999771, -0.0214081, 0, 0.0214081, 0.999771, 0, 0, 0, 1, -1.46688, -3.34915, 0.2)
+transform = Transform3D(0.999771, -0.021408, 0, 0.021408, 0.999771, 0, 0, 0, 1, -1.46688, -3.34915, 0.2)
 offset = Vector2(-70, -90)
 shaded = true
 alpha_cut = 1
@@ -384,7 +464,7 @@ collision_mask = 8
 polygon = PackedVector2Array(-2.82091, 1.9535, -1.95982, -0.557254, -0.888409, -1.4258, -0.846557, -2.65637, -1.67353, -3.06585, -1.66677, -3.71204, -0.692552, -4.62952, 0.821662, -4.65407, 2.01157, -3.64017, 1.95111, -2.9806, 1.22917, -2.54886, 1.11921, -1.32821, 2.35293, -0.255045, 2.94802, 1.92499, 3.62036, 1.83378, 4.17167, 2.84117, 3.03546, 4.04974, 2.56491, 3.79798, 0.881517, 3.87762, 0.697456, 4.59383, -0.418659, 4.54066, -0.613371, 3.78115, -2.45344, 3.7718, -2.93603, 4.09761, -4.15849, 2.9229, -3.37661, 1.84678)
 
 [node name="GrabPoint" type="Node3D" parent="."]
-transform = Transform3D(0.705013, 0.255845, 0, -0.255845, 0.705013, 0, 0, 0, 0.75, -4.78442, -0.782285, 0.3)
+transform = Transform3D(-0.748953, 0.0396161, 0, -0.0396161, -0.748953, 0, 0, 0, 0.75, -1.25665, 5.86651, 0.675)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
