@@ -8,6 +8,7 @@ const NORMAL_SCOPE_SCALE : float = 0.15
 const ZOOMED_SCOPE_SCALE : float = 0.3
 const RECOIL_DECAY_TIME : float = 0.2
 const SHAKE_DECAY_TIME : float = 0.1
+const SHAKE_BIG_DECAY_TIME : float = 0.4
 
 var sensitivity := NORMAL_SENSITIVITY
 var is_zoomed_in := false
@@ -86,9 +87,15 @@ func _process(delta: float) -> void:
 		
 	if is_zoomed_in:
 		rot_x_recoil *= exp(-delta / RECOIL_DECAY_TIME)
-	shake_intensity *= exp(-delta / SHAKE_DECAY_TIME)
-	rot_x_shake = deg_to_rad(randf_range(-shake_intensity, shake_intensity) * fov / 90)
-	rot_y_shake = deg_to_rad(randf_range(-shake_intensity, shake_intensity) * fov / 90)
+	if shake_intensity > 5:
+		shake_intensity *= exp(-delta / SHAKE_BIG_DECAY_TIME)
+	else:
+		shake_intensity *= exp(-delta / SHAKE_DECAY_TIME)
+	var shake_factor = 0.5
+	if is_zoomed_in:
+		shake_factor = 0.3
+	rot_x_shake = deg_to_rad(randf_range(-shake_intensity, shake_intensity) * shake_factor)
+	rot_y_shake = deg_to_rad(randf_range(-shake_intensity, shake_intensity) * shake_factor)
 	rotation.x = rot_x + rot_x_recoil + rot_x_shake
 	rotation.y = rot_y + rot_y_shake
 	rotation.z = rot_z
@@ -137,7 +144,7 @@ func _on_Timer_timeout():
 	can_shoot = true
 
 func shake(intensity : float) -> void:
-	shake_intensity = intensity
+	shake_intensity += intensity
 
 func _on_area_entered(area: Area3D) -> void:
 	area.get_parent().queue_free()

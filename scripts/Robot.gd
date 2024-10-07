@@ -2,11 +2,12 @@ extends Node3D
 
 const RocketScene := preload("res://entities/Rocket.tscn")
 const Building := preload("res://scripts/Building.gd")
+const Player := preload("res://scripts/Scope.gd")
 
 @onready var animation_player := $AnimationPlayer
 @onready var grab_point := $GrabPoint
 @onready var fire_point := $FirePoint
-@onready var player : Node3D = owner.find_child("Camera3D")
+@onready var player : Player = owner.find_child("Camera3D")
 
 var velocity := Vector3.ZERO
 var state_timer : float
@@ -18,7 +19,8 @@ enum State {
 	STAND,
 	WALK,
 	THROW,
-	BARRAGE
+	BARRAGE,
+	STOMP
 }
 
 var state : State = State.STAND
@@ -47,15 +49,26 @@ func _process(delta: float) -> void:
 			state_timer = 0
 			animation_player.play("WALK", 0.5, 0.33)
 			velocity = Vector3(randf_range(-2, 2), 0, randf_range(-1, 1))
+		if building == null && at_min_time && (at_max_time || randf() > exp(-delta / 4)):
+			state = State.STOMP
+			state_timer = 0
+			animation_player.play("STOMP", 0.5, 1.0)
 	elif state == State.WALK:
 		position += velocity * delta
 		if at_min_time && (at_max_time || randf() > exp(-delta / 3)):
 			state = State.STAND
 			state_timer = 0
 			animation_player.play("STAND", 0.5, 0.5)
+			stomp_small()
 			velocity = Vector3.ZERO
 	elif state == State.THROW || state == State.BARRAGE:
 		if !animation_player.is_playing():
+			state = State.STAND
+			state_timer = 0
+			animation_player.play("STAND", 0.5, 0.5)
+			velocity = Vector3.ZERO
+	elif state == State.STOMP:
+		if state_timer > 1.4 * 3:
 			state = State.STAND
 			state_timer = 0
 			animation_player.play("STAND", 0.5, 0.5)
@@ -78,5 +91,13 @@ func _on_area_entered(area: Area3D) -> void:
 		if building == null:
 			building = b
 			b.pickup(grab_point)
+			stomp_small()
 		else:
 			b.shoot(100)
+			stomp_large()
+
+func stomp_small() -> void:
+	player.shake(2)
+
+func stomp_large() -> void:
+	player.shake(10)
