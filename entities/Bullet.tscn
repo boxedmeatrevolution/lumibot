@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Bullet.gd" id="1_h41d5"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_818x5"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_i8n2a"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l6up3"]
 initial_velocity_min = 20.0
@@ -10,6 +10,8 @@ initial_velocity_max = 20.0
 gravity = Vector3(0, 0, 0)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jg2pv"]
+height = 1.0
+radial_segments = 16
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_v7icb"]
 albedo_color = Color(1, 1, 0, 1)
@@ -22,11 +24,12 @@ disable_receive_shadows = true
 script = ExtResource("1_h41d5")
 
 [node name="Area3D" type="Area3D" parent="."]
-collision_mask = 26
+collision_mask = 254
+monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_818x5")
+shape = SubResource("SphereShape3D_i8n2a")
 
 [node name="TrailGPUParticles3D" type="GPUParticles3D" parent="."]
 emitting = false

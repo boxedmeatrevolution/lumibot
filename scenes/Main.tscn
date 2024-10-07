@@ -93,7 +93,7 @@ script = ExtResource("1_hsoda")
 transform = Transform3D(0.09, 0, 0, 0, 0.09, 0, 0, 0, 0.09, 0, 0, -1)
 
 [node name="Timer" type="Timer" parent="Camera3D"]
-wait_time = 0.5
+wait_time = 1.75
 one_shot = true
 
 [node name="Robot" parent="." instance=ExtResource("1_34fhc")]

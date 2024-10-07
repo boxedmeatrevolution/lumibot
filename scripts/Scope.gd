@@ -1,11 +1,11 @@
 extends Camera3D
 
 const NORMAL_FOV : float = 40
-const ZOOMED_FOV : float = 10
+const ZOOMED_FOV : float = 7
 const NORMAL_SENSITIVITY : float = 0.002
-const ZOOMED_SENSITIVITY : float = 0.0002
+const ZOOMED_SENSITIVITY : float = 0.0001
 const NORMAL_SCOPE_SCALE : float = 0.15
-const ZOOMED_SCOPE_SCALE : float = 0.4
+const ZOOMED_SCOPE_SCALE : float = 0.3
 const RECOIL_DECAY_TIME : float = 0.2
 
 var sensitivity := NORMAL_SENSITIVITY
@@ -109,7 +109,7 @@ func shoot():
 	bullet_instance.global_position = global_position + 0.1 * Vector3.DOWN
 	bullet_instance.velocity = -global_transform.basis.z * bullet_instance.speed + global_transform.basis.y * bullet_instance.upspeed
 	can_shoot = false
-	rot_x_recoil = deg_to_rad(4)
+	rot_x_recoil = deg_to_rad(2)
 	timer.start()
 
 func _on_Timer_timeout():

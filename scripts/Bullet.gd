@@ -1,37 +1,45 @@
 extends Node3D
 
-@export var speed = 160.0  # Speed of the bullet
+@export var speed = 140.0  # Speed of the bullet
 @export var upspeed = 0.0  # Speed of the bullet
-@export var pulldown = -2  # Gravity affecting the bullet
+@export var pulldown = -4  # Gravity affecting the bullet
 
 const Rocket := preload("res://scripts/Rocket.gd")
 
+@onready var area := $Area3D
+@onready var area_shape := $Area3D/CollisionShape3D
+
 var gravity_effect = Vector3(0, pulldown, 0)
 var velocity = Vector3()
+var query := PhysicsRayQueryParameters3D.new()
 
 func _ready():
-	pass
+	query.collide_with_areas = true
+	query.collide_with_bodies = false
+	query.collision_mask = area.collision_mask
 
-func _process(delta):
+func _physics_process(delta : float) -> void:
 	velocity += gravity_effect * delta
-	position += velocity * delta
+	query.from = global_position
+	query.to = global_position + velocity * delta
+	var space_state := get_world_3d().direct_space_state
+	var collision := space_state.intersect_ray(query)
+	if !collision.is_empty():
+		_on_area_entered(collision.collider)
+	global_position += velocity * delta
 
 func _on_area_entered(area: Area3D) -> void:
 	if area.get_collision_layer_value(5):
 		var r : Rocket = area.get_parent()
 		r.destroy()
 		print("Rocket hit!")
-	elif area.get_collision_layer_value(2):
+	elif area.get_collision_layer_value(4):
 		print("Building hit!")
+	elif area.get_collision_layer_value(2):
+		print("Robot hit!")
 	else:
-		print("Bullet hit something else!")
+		print("Bullet hit something else! ", area.collision_layer)
 	collision()
-	
+
 func collision():
 	queue_free()
-		# var b : Building = area.get_parent()
-		# if building == null && randf() > 0.5:
-		# 	building = b
-		# 	b.pickup(grab_point)
-		# else:
-		# 	b.demolish()

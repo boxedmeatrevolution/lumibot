@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv410d8xken4t"]
+
+[ext_resource type="Texture2D" uid="uid://7rdfixqc8ojw" path="res://sprites/People.png" id="1_2qa03"]
+[ext_resource type="Script" path="res://scripts/Creature.gd" id="1_4ek85"]
+
+[node name="Creature" type="Node3D"]
+script = ExtResource("1_4ek85")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+offset = Vector2(0, 350)
+shaded = true
+alpha_cut = 1
+texture = ExtResource("1_2qa03")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Area3D"]
+polygon = PackedVector2Array(-2.41721, 0.549448, -2.06349, 2.7526, -0.860854, 4.30895, -1.64914, 5.24883, -1.45712, 6.46157, -0.73958, 7.30039, 0.584333, 7.30039, 1.89814, 5.91584, 0.98858, 4.32917, 2.1609, 3.05579, 2.83801, 0.559554, 2.44387, -0.188305, -1.92201, -0.248942)
