@@ -6,6 +6,7 @@ const NORMAL_SENSITIVITY : float = 0.002
 const ZOOMED_SENSITIVITY : float = 0.0004
 const NORMAL_SCOPE_SCALE : float = 0.15
 const ZOOMED_SCOPE_SCALE : float = 0.6
+const RECOIL_DECAY_TIME : float = 0.2
 
 var sensitivity := NORMAL_SENSITIVITY
 var is_zoomed_in := false
@@ -20,6 +21,7 @@ const Bullet = preload("res://entities/Bullet.tscn")
 
 var rot_x : float = 0
 var rot_y : float = 0
+var rot_x_recoil : float = 0
 
 @onready var scope = $Scope
 @onready var timer = $Timer
@@ -62,12 +64,15 @@ func _process(delta: float) -> void:
 		zoom_out()
 		
 	if is_zoomed_in:
-		if shake_amount > 0:
-			shake_amount -= shake_decay * delta
-			var shake_offset = Vector3(randf_range(-shake_intensity, shake_intensity), randf_range(-shake_intensity, shake_intensity), randf_range(-shake_intensity, shake_intensity)) * shake_amount
-			global_transform.origin += shake_offset
-		else:
-			global_transform.origin = global_transform.origin
+		rot_x_recoil *= exp(-delta / RECOIL_DECAY_TIME)
+		#if shake_amount > 0:
+			#shake_amount -= shake_decay * delta
+			#var shake_offset = Vector3(randf_range(-shake_intensity, shake_intensity), randf_range(-shake_intensity, shake_intensity), randf_range(-shake_intensity, shake_intensity)) * shake_amount
+			#global_transform.origin += shake_offset
+		#else:
+			#global_transform.origin = global_transform.origin
+	rotation.x = rot_x + rot_x_recoil
+	rotation.y = rot_y
 		
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -75,8 +80,6 @@ func _input(event):
 		rot_y += -event.relative.x * sensitivity
 		rot_x = clampf(rot_x, deg_to_rad(-20), deg_to_rad(30))
 		rot_y = clampf(rot_y, deg_to_rad(-35), deg_to_rad(35))
-		rotation.x = rot_x
-		rotation.y = rot_y
 
 	if Input.is_action_pressed("shoot") and can_shoot:
 		shoot()
@@ -103,8 +106,10 @@ func zoom_out():
 func shoot():
 	var bullet_instance = Bullet.instantiate()
 	get_tree().root.add_child(bullet_instance)
-	bullet_instance.global_transform = global_transform.translated(Vector3(0, -2.5, 0))
+	bullet_instance.global_position = global_position + 0.1 * Vector3.DOWN
+	bullet_instance.velocity = -global_transform.basis.z * bullet_instance.speed + global_transform.basis.y * bullet_instance.upspeed
 	can_shoot = false
+	rot_x_recoil = deg_to_rad(4)
 	timer.start()
 
 func _on_Timer_timeout():

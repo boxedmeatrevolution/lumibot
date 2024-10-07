@@ -1,7 +1,7 @@
-extends Area3D
+extends Node3D
 
 @export var speed = 160.0  # Speed of the bullet
-@export var upspeed = 5.0  # Speed of the bullet
+@export var upspeed = 0.0  # Speed of the bullet
 @export var pulldown = -2  # Gravity affecting the bullet
 
 const Rocket := preload("res://scripts/Rocket.gd")
@@ -10,8 +10,7 @@ var gravity_effect = Vector3(0, pulldown, 0)
 var velocity = Vector3()
 
 func _ready():
-	velocity = -transform.basis.z * speed + transform.basis.y * upspeed
-	# connect("body_entered", Callable(self, "_on_Bullet_body_entered"))
+	pass
 
 func _process(delta):
 	velocity += gravity_effect * delta
