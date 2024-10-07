@@ -34,7 +34,7 @@ func _on_area_entered(area: Area3D) -> void:
 	if area.get_collision_layer_value(5):
 		var r : Rocket = area.get_parent()
 		r.destroy()
-	elif area.get_collision_layer_value(7):
+	elif area.get_collision_layer_value(7) || area.get_collision_layer_value(4) || area.get_collision_layer_value(6):
 		var b : Building = area.get_parent()
 		b.shoot()
 	elif area.get_collision_layer_value(9):

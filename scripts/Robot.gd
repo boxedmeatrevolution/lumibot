@@ -79,4 +79,4 @@ func _on_area_entered(area: Area3D) -> void:
 			building = b
 			b.pickup(grab_point)
 		else:
-			b.demolish()
+			b.damage(100)

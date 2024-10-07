@@ -20,6 +20,8 @@ func _ready() -> void:
 	rotation_axis = Vector3(randf_range(-1, 1), randf_range(-1, 1), randf_range(-1, 1)).normalized()
 	angular_velocity = deg_to_rad(randf_range(0, 40))
 	rotation = Vector3(randf_range(-PI, PI), randf_range(-PI, PI), randf_range(-PI, PI))
+	if global_position.y < 0:
+		global_position.y = 0
 	$GPUParticles3D.restart()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
