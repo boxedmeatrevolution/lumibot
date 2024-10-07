@@ -15,5 +15,8 @@ func _process(delta):
 	velocity += gravity_effect * delta
 	position += velocity * delta
 
-func _on_Bullet_body_entered():
+func _on_Bullet_body_entered(body):
 	print("Bullet hit target!")
+	if body.is_in_group("targets"):  # Assuming targets are in a group named "targets"
+		body.queue_free()  # Remove the target
+	queue_free()  # Remove the bullet
