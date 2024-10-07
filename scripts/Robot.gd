@@ -10,7 +10,7 @@ const Building := preload("res://scripts/Building.gd")
 var velocity := Vector3.ZERO
 var state_timer : float
 
-const STATE_MIN_TIME : float = 0.5
+const STATE_MIN_TIME : float = 1.5
 const STATE_MAX_TIME : float = 5
 
 enum State {
@@ -68,7 +68,7 @@ func throw_building():
 func _on_area_entered(area: Area3D) -> void:
 	if area.get_collision_layer_value(4):
 		var b : Building = area.get_parent()
-		if building == null && randf() > 0.5:
+		if building == null:
 			building = b
 			b.pickup(grab_point)
 		else:
