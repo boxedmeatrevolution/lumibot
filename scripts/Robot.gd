@@ -4,7 +4,7 @@ const RocketScene := preload("res://entities/Rocket.tscn")
 const Building := preload("res://scripts/Building.gd")
 
 @onready var animation_player := $AnimationPlayer
-@onready var grab_point := $BodySprite/RightArmSprite/GrabPoint
+@onready var grab_point := $GrabPoint
 @onready var player : Node3D = owner.find_child("Camera3D")
 
 var velocity := Vector3.ZERO
