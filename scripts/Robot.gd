@@ -3,6 +3,8 @@ extends Node3D
 const RocketScene := preload("res://entities/Rocket.tscn")
 const Building := preload("res://scripts/Building.gd")
 const Player := preload("res://scripts/Scope.gd")
+const SMALL_STOMP_DB : float = 15.0
+const LARGE_STOMP_DB : float = 60.0
 
 @onready var animation_player := $AnimationPlayer
 @onready var grab_point := $GrabPoint
@@ -11,6 +13,9 @@ const Player := preload("res://scripts/Scope.gd")
 
 var velocity := Vector3.ZERO
 var state_timer : float
+
+var building_break_player = AudioStreamPlayer.new()
+var stomp_player = AudioStreamPlayer.new()
 
 const STATE_MIN_TIME : float = 1.5
 const STATE_MAX_TIME : float = 5
@@ -28,6 +33,12 @@ var building : Building = null
 
 func _ready() -> void:
 	animation_player.play("STAND")
+	
+	# Add audio
+	add_child(building_break_player)
+	building_break_player.stream = load("res://sounds/building_demo.ogg")
+	add_child(stomp_player)
+	stomp_player.stream = load("res://sounds/stomp.ogg")
 
 func _process(delta: float) -> void:
 	state_timer += delta
@@ -91,6 +102,7 @@ func _on_area_entered(area: Area3D) -> void:
 		if building == null:
 			building = b
 			b.pickup(grab_point)
+			building_break_player.play()
 			stomp_small()
 		else:
 			b.shoot(100)
@@ -98,6 +110,10 @@ func _on_area_entered(area: Area3D) -> void:
 
 func stomp_small() -> void:
 	player.shake(2)
+	stomp_player.volume_db = SMALL_STOMP_DB
+	stomp_player.play()
 
 func stomp_large() -> void:
 	player.shake(10)
+	stomp_player.volume_db = LARGE_STOMP_DB
+	stomp_player.play()
