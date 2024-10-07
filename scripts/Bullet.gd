@@ -29,7 +29,6 @@ func _on_area_entered(area: Area3D) -> void:
 	collision()
 	
 func collision():
-	
 	queue_free()
 		# var b : Building = area.get_parent()
 		# if building == null && randf() > 0.5:
