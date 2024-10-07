@@ -8,6 +8,7 @@ const Player := preload("res://scripts/Scope.gd")
 @onready var grab_point := $GrabPoint
 @onready var fire_point := $FirePoint
 @onready var player : Player = owner.find_child("Camera3D")
+@onready var label := $Label3D
 
 var velocity := Vector3.ZERO
 var state_timer : float
@@ -36,7 +37,7 @@ func _process(delta: float) -> void:
 		state_timer = STATE_MAX_TIME + 1
 	var at_min_time := (state_timer > STATE_MIN_TIME)
 	var at_max_time := (state_timer > STATE_MAX_TIME)
-	if Global.num_gremlins <= 0:
+	if state != State.WAVE && Global.num_gremlins <= 0:
 		state = State.WAVE
 		state_timer = 0
 		animation_player.play("WAVE", 0.5, 1.2)
@@ -79,6 +80,9 @@ func _process(delta: float) -> void:
 			state_timer = 0
 			animation_player.play("STAND", 0.5, 0.5)
 			velocity = Vector3.ZERO
+	elif state == State.WAVE:
+		if state_timer > 2:
+			label.visible = true
 
 func throw_building():
 	if building != null:

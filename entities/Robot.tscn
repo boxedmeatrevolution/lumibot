@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cae5y4l6ajbrh"]
+[gd_scene load_steps=22 format=3 uid="uid://cae5y4l6ajbrh"]
 
 [ext_resource type="Script" path="res://scripts/Robot.gd" id="1_fbasr"]
 [ext_resource type="Texture2D" uid="uid://dwnndoh1y1yok" path="res://sprites/RobotHead.png" id="2_d2pkk"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b5vhghske5sap" path="res://sprites/RobotLeftLeg.png" id="7_cu4r1"]
 [ext_resource type="Texture2D" uid="uid://cmhmbigb2ae6e" path="res://sprites/RobotRightFoot.png" id="9_a4qvs"]
 [ext_resource type="Texture2D" uid="uid://c7slvc31nmkdi" path="res://sprites/RobotLeftFoot.png" id="11_2f5qa"]
+[ext_resource type="FontFile" uid="uid://cr5hxwqrveg1n" path="res://fonts/RobotSpeech.ttf" id="13_rc0yk"]
 
 [sub_resource type="Animation" id="Animation_d5mp2"]
 resource_name = "BARRAGE"
@@ -782,7 +783,7 @@ transform = Transform3D(1.29245, -0.327663, 0, 0.327663, 1.29245, 0, 0, 0, 1.333
 transform = Transform3D(0.859775, 1.0191, 0, -1.0191, 0.859775, 0, 0, 0, 1.33333, 3.24949, 3.72194, 0.1)
 
 [node name="GrabPoint" type="Node3D" parent="."]
-transform = Transform3D(0.999735, -0.0169563, 0, 0.0169563, 0.999735, 0, 0, 0, 1, -3.67861, -1.52605, 0.675)
+transform = Transform3D(0.999733, -0.0169562, 0, 0.0169562, 0.999733, 0, 0, 0, 1, -3.67861, -1.52605, 0.675)
 
 [node name="FirePoint" type="Node3D" parent="."]
 transform = Transform3D(-0.270403, -0.699559, 0, 0.699559, -0.270403, 0, 0, 0, 0.75, 5.44037, 4.04163, 0.675)
@@ -791,6 +792,18 @@ transform = Transform3D(-0.270403, -0.699559, 0, 0.699559, -0.270403, 0, 0, 0, 0
 libraries = {
 "": SubResource("AnimationLibrary_hpss4")
 }
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.29478, 0.5)
+visible = false
+no_depth_test = true
+modulate = Color(0.11535, 0.705231, 0.607613, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "I didn't want to hurt the city :(
+Thank you for helping me
+get rid of those goblights!"
+font = ExtResource("13_rc0yk")
+font_size = 256
 
 [connection signal="area_entered" from="BodySprite/HeadSprite/HeadArea" to="." method="_on_area_entered"]
 [connection signal="area_entered" from="BodySprite/LeftArmSprite/LeftArmArea" to="." method="_on_area_entered"]
