@@ -33,6 +33,7 @@ var dead := false
 var shot_player = AudioStreamPlayer.new()
 var hit_player = AudioStreamPlayer.new()
 var music_player = AudioStreamPlayer.new()
+var reload_player = AudioStreamPlayer.new()
 
 @onready var scope = $Scope
 @onready var timer = $Timer
@@ -77,10 +78,13 @@ func _ready() -> void:
 	shot_player.stream = load("res://sounds/shot2.ogg")
 	add_child(hit_player)
 	hit_player.stream = load("res://sounds/shot.ogg")
+	add_child(reload_player)
+	reload_player.stream = load("res://sounds/reload.ogg")
 	add_child(music_player)
 	music_player.stream = load("res://sounds/ld56_music_longer.ogg")
-	music_player.connect("finished", Callable(self, "on_music_loop"))
+	music_player.connect("finished", Callable(self, "_on_music_loop"))
 	music_player.play()
+	$ReloadSoundTimer.connect("timeout", Callable(self, "_on_reload_timer"))
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -145,6 +149,7 @@ func shoot():
 	rot_x_recoil = deg_to_rad(2)
 	
 	shot_player.play()
+	$ReloadSoundTimer.start()
 	timer.start()
 
 func _on_Timer_timeout():
@@ -161,4 +166,7 @@ func _on_area_entered(area: Area3D) -> void:
 
 func _on_music_loop():
 	music_player.play()
+	
+func _on_reload_timer():
+	reload_player.play()
 	

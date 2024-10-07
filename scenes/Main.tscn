@@ -120,6 +120,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.9)
 visible = false
 mesh = SubResource("PlaneMesh_3o7is")
 
+[node name="ReloadSoundTimer" type="Timer" parent="Camera3D"]
+one_shot = true
+
 [node name="Robot" parent="." instance=ExtResource("1_34fhc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.97953, 7.40414, -34.2069)
 

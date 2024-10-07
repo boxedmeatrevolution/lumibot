@@ -20,6 +20,7 @@ var shot_down : bool = false
 var on_floor : bool = false
 
 var rocket_player = AudioStreamPlayer.new()
+var init_player = AudioStreamPlayer.new()
 
 func _ready() -> void:
 	$ExplosionParticles3D.visible = false
@@ -38,6 +39,11 @@ func _ready() -> void:
 	rocket_player.stream = load("res://sounds/flying_rocket.ogg")
 	rocket_player.connect("finished", Callable(self,"_on_loop_sound"))
 	rocket_player.play()
+	
+	add_child(init_player)
+	init_player.stream = load("res://sounds/laser_shot.ogg")
+	init_player.volume_db = 15.0
+	init_player.play()
 
 func _process(delta: float) -> void:
 	if not on_floor:
