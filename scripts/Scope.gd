@@ -28,6 +28,10 @@ var rot_z : float = 0
 
 var dead := false
 
+# Audio players
+var shot_player = AudioStreamPlayer.new()
+var hit_player = AudioStreamPlayer.new()
+
 @onready var scope = $Scope
 @onready var timer = $Timer
 @onready var greyscale := $GreyscaleMesh
@@ -62,6 +66,12 @@ func _ready() -> void:
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+	# Add audio
+	add_child(shot_player)
+	shot_player.stream = load("res://sounds/shot2.ogg")
+	add_child(hit_player)
+	hit_player.stream = load("res://sounds/shot.ogg")
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if !dead && Input.is_action_pressed("zoom"):
@@ -114,6 +124,8 @@ func shoot():
 	bullet_instance.velocity = -global_transform.basis.z * bullet_instance.speed + global_transform.basis.y * bullet_instance.upspeed
 	can_shoot = false
 	rot_x_recoil = deg_to_rad(2)
+	
+	shot_player.play()
 	timer.start()
 
 func _on_Timer_timeout():
