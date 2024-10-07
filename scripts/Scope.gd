@@ -16,7 +16,7 @@ var shake_amount = 0.0
 var shake_decay = 10.0
 var shake_intensity = 0.75
 
-@export var Bullet = preload("res://entities/Bullet.tscn")
+const Bullet = preload("res://entities/Bullet.tscn")
 
 var rot_x : float = 0
 var rot_y : float = 0
