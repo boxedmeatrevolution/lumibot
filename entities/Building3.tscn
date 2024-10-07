@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://bopp5b7ximg8j"]
+
+[ext_resource type="Script" path="res://scripts/Building.gd" id="1_r5uw4"]
+[ext_resource type="ArrayMesh" uid="uid://bnnmlywlsf7x2" path="res://models/BuildingCube.obj" id="2_q6xat"]
+[ext_resource type="Texture2D" uid="uid://dng8gd7v0ktj6" path="res://sprites/BuildingTexture4.png" id="3_0h8qo"]
+[ext_resource type="Texture2D" uid="uid://6sufqxoq2gpd" path="res://sprites/BuildingTexture6.png" id="4_6ymwj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y0na8"]
+size = Vector3(12, 8, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gtivu"]
+albedo_texture = ExtResource("3_0h8qo")
+uv1_scale = Vector3(6, 4, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nmc7g"]
+albedo_texture = ExtResource("4_6ymwj")
+uv1_scale = Vector3(2, 1, 1)
+
+[node name="Building1" type="Node3D"]
+script = ExtResource("1_r5uw4")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+shape = SubResource("BoxShape3D_y0na8")
+
+[node name="GrabPoint" type="Node3D" parent="."]
+transform = Transform3D(-0.00828358, 0.0875821, 0.996123, -0.995557, -0.0941605, 0, 0.0937954, -0.991697, 0.0879729, 0.50626, 4.84783, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="GrabPoint"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+enabled = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(6, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+mesh = ExtResource("2_q6xat")
+surface_material_override/0 = SubResource("StandardMaterial3D_gtivu")
+surface_material_override/1 = SubResource("StandardMaterial3D_nmc7g")
