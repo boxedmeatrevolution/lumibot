@@ -20,7 +20,8 @@ enum State {
 	WALK,
 	THROW,
 	BARRAGE,
-	STOMP
+	STOMP,
+	WAVE,
 }
 
 var state : State = State.STAND
@@ -35,6 +36,11 @@ func _process(delta: float) -> void:
 		state_timer = STATE_MAX_TIME + 1
 	var at_min_time := (state_timer > STATE_MIN_TIME)
 	var at_max_time := (state_timer > STATE_MAX_TIME)
+	if Global.num_gremlins <= 0:
+		state = State.WAVE
+		state_timer = 0
+		animation_player.play("WAVE", 0.5, 1.2)
+		velocity = Vector3.ZERO
 	if state == State.STAND:
 		if building != null && at_min_time && (at_max_time || randf() > exp(-delta / 3)):
 			state = State.THROW

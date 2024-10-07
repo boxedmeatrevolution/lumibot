@@ -88,6 +88,7 @@ func _process(delta: float) -> void:
 		transform.origin = lerp(transform_1.origin, transform_2.origin, 1 - exp(-delta / PICKUP_TIME))
 		transform.basis = transform_1.basis.orthonormalized().slerp(transform_2.basis.orthonormalized(), 1 - exp(-delta / PICKUP_TIME))
 	elif state == State.THROW:
+		delta *= Global.building_speed_factor
 		var g := GRAVITY / (THROW_SPEED * THROW_SPEED)
 		var throw_delta := Vector3(throw_pos_2.x - throw_pos_1.x, 0, throw_pos_2.z - throw_pos_1.z)
 		var c := (throw_pos_2.y - throw_pos_1.y) / throw_delta.length() / (0.5 * g)

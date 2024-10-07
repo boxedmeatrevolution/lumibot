@@ -36,6 +36,7 @@ func _process(delta: float) -> void:
 			velocity += velocity_down
 			global_position += velocity * delta
 		else:
+			delta *= Global.rocket_speed_factor
 			time += delta
 			var r := global_position - target
 			r += 0.3 * r.length() * Vector3(sin(time / 2 + phase), cos(time / 2 + phase), 0)
