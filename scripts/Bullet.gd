@@ -8,6 +8,7 @@ const Rocket := preload("res://scripts/Rocket.gd")
 const Building := preload("res://scripts/Building.gd")
 const Trash := preload("res://scripts/Trash.gd")
 const Gremlin := preload("res://scripts/Creature.gd")
+const Camera := preload("res://scripts/Scope.gd")
 
 @onready var area := $Area3D
 @onready var area_shape := $Area3D/CollisionShape3D
@@ -20,7 +21,7 @@ func _ready():
 	query.collide_with_areas = true
 	query.collide_with_bodies = false
 	query.collision_mask = area.collision_mask
-
+	
 func _physics_process(delta : float) -> void:
 	velocity += gravity_effect * delta
 	query.from = global_position
@@ -32,6 +33,9 @@ func _physics_process(delta : float) -> void:
 	global_position += velocity * delta
 
 func _on_area_entered(area: Area3D) -> void:
+	var c : Camera = get_viewport().get_camera_3d()
+	c.hit_player.play()
+	
 	if area.get_collision_layer_value(5):
 		var r : Rocket = area.get_parent()
 		r.destroy()
