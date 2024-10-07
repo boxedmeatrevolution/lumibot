@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://875s58aqkj0m"]
 
-[ext_resource type="Texture2D" uid="uid://0g4vopvtwg5e" path="res://sprites/scope.png" id="1_drsft"]
+[ext_resource type="Texture2D" uid="uid://cko8mp0hm2sdy" path="res://sprites/scope.png" id="1_drsft"]
 
 [node name="Scope" type="Node3D"]
 

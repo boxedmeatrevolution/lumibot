@@ -1,11 +1,11 @@
 extends Camera3D
 
 const NORMAL_FOV : float = 40
-const ZOOMED_FOV : float = 15
+const ZOOMED_FOV : float = 10
 const NORMAL_SENSITIVITY : float = 0.002
-const ZOOMED_SENSITIVITY : float = 0.0004
+const ZOOMED_SENSITIVITY : float = 0.0002
 const NORMAL_SCOPE_SCALE : float = 0.15
-const ZOOMED_SCOPE_SCALE : float = 0.6
+const ZOOMED_SCOPE_SCALE : float = 0.4
 const RECOIL_DECAY_TIME : float = 0.2
 
 var sensitivity := NORMAL_SENSITIVITY
