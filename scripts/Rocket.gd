@@ -28,6 +28,7 @@ func _ready() -> void:
 	var new_surface = surface.duplicate()
 	mesh.set_surface_override_material(0, new_surface)
 	$DestroyTimer.connect("timeout", Callable(self, "_on_DestroyTimer_timeout"))
+	Global.rocket_count += 1
 
 func _process(delta: float) -> void:
 	if not on_floor:
@@ -61,6 +62,7 @@ func destroy():
 		timer.connect("timeout", Callable(self, "_on_Timer_timeout"))
 		add_child(timer)
 		timer.start()
+		Global.rocket_count -= 1
 	
 func _on_DestroyTimer_timeout():
 	queue_free()

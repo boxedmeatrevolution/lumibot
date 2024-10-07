@@ -93,8 +93,7 @@ func _process(delta: float) -> void:
 		var c := (throw_pos_2.y - throw_pos_1.y) / throw_delta.length() / (0.5 * g)
 		var throw_height := -0.5 * g * throw_dist * (throw_dist - throw_delta.length() - c)
 		global_position = throw_pos_1 + Vector3.UP * throw_height + throw_delta.normalized() * throw_dist
-		var offset_transform := Transform3D().translated(grab_point.position)
-		transform *= offset_transform * Transform3D().rotated(Vector3(0, 0, 1), angular_velocity * delta) * offset_transform.affine_inverse()
+		transform *= Transform3D().translated(grab_point.position) * Transform3D().rotated(Vector3(0, 0, 1), angular_velocity * delta) * Transform3D().translated(-grab_point.position)
 		if (throw_dist > throw_delta.length()):
 			queue_free()
 		throw_dist += THROW_SPEED * delta

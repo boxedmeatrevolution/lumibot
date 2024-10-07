@@ -38,11 +38,11 @@ func _process(delta: float) -> void:
 			state = State.THROW
 			state_timer = 0
 			animation_player.play("THROW", 0.5, 0.4)
-		if building == null && at_min_time && (at_max_time || randf() > exp(-delta / 3)):
+		if building == null && Global.rocket_count <= 6 && at_min_time && (at_max_time || randf() > exp(-delta / 3)):
 			state = State.BARRAGE
 			state_timer = 0
 			animation_player.play("BARRAGE", 0.5, 0.5)
-		if at_min_time && (at_max_time || randf() > exp(-delta / 3)):
+		if at_min_time && (at_max_time || randf() > exp(-delta / 2)):
 			state = State.WALK
 			state_timer = 0
 			animation_player.play("WALK", 0.5, 0.33)
@@ -79,4 +79,4 @@ func _on_area_entered(area: Area3D) -> void:
 			building = b
 			b.pickup(grab_point)
 		else:
-			b.damage(100)
+			b.shoot(100)
