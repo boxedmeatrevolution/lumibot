@@ -5,6 +5,8 @@ extends Node3D
 @export var pulldown = -4  # Gravity affecting the bullet
 
 const Rocket := preload("res://scripts/Rocket.gd")
+const Building := preload("res://scripts/Building.gd")
+const Trash := preload("res://scripts/Trash.gd")
 
 @onready var area := $Area3D
 @onready var area_shape := $Area3D/CollisionShape3D
@@ -32,9 +34,12 @@ func _on_area_entered(area: Area3D) -> void:
 	if area.get_collision_layer_value(5):
 		var r : Rocket = area.get_parent()
 		r.destroy()
-		print("Rocket hit!")
-	elif area.get_collision_layer_value(4):
-		print("Building hit!")
+	elif area.get_collision_layer_value(7):
+		var b : Building = area.get_parent()
+		b.shoot()
+	elif area.get_collision_layer_value(9):
+		var b : Trash = area.get_parent()
+		b.shoot()
 	elif area.get_collision_layer_value(2):
 		print("Robot hit!")
 	else:

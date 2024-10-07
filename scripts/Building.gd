@@ -1,12 +1,14 @@
 extends Node3D
 
 const BuildingRemnantScene := preload("res://entities/BuildingRemnant.tscn")
+const TrashScene := preload("res://entities/Trash.tscn")
 
 const PICKUP_TIME : float = 0.5
 const GRAVITY : float = 0.15
 const THROW_SPEED : float = 3
 
-@onready var mesh := $MeshInstance3D
+var hp := 3
+
 @onready var area := $Area3D
 @onready var grab_point := $GrabPoint
 
@@ -55,6 +57,18 @@ func throw(parent : Node3D, target : Vector3):
 
 func _ready() -> void:
 	pass
+
+func shoot() -> void:
+	hp -= 1
+	if hp <= 0:
+		for i in range(0, 6):
+			var trash := TrashScene.instantiate()
+			get_parent().add_child(trash)
+			trash.global_position = global_position + Vector3(randf_range(-4, 4), randf_range(-4, 4), randf_range(-4, 4))
+			trash.throw_dist = 0
+			trash.throw_pos_1 = trash.global_position
+			trash.throw_pos_2 = throw_pos_2 + Vector3(randf_range(-1, 1), randf_range(-1, 1), randf_range(-1, 1))
+		queue_free()
 
 func _process(delta: float) -> void:
 	if state == State.PICKUP:

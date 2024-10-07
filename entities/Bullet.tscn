@@ -24,7 +24,7 @@ disable_receive_shadows = true
 script = ExtResource("1_h41d5")
 
 [node name="Area3D" type="Area3D" parent="."]
-collision_mask = 254
+collision_mask = 382
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]

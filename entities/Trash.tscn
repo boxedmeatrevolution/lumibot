@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://b86aefmrcoi0l"]
+
+[ext_resource type="Script" path="res://scripts/Trash.gd" id="1_8igfl"]
+[ext_resource type="ArrayMesh" uid="uid://bjai2k2iqak8k" path="res://models/Trash.obj" id="1_xwlrj"]
+[ext_resource type="Texture2D" uid="uid://6sufqxoq2gpd" path="res://sprites/BuildingTexture6.png" id="2_arndd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rftdn"]
+cull_mode = 2
+albedo_texture = ExtResource("2_arndd")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_c8ntu"]
+radius = 0.8
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w54py"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, -2, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1s7d2"]
+albedo_texture = ExtResource("2_arndd")
+uv1_scale = Vector3(0.15, 0.15, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_8ka6i"]
+material = SubResource("StandardMaterial3D_1s7d2")
+size = Vector2(0.5, 0.5)
+
+[node name="Trash" type="Node3D"]
+script = ExtResource("1_8igfl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.178834, -0.259815, 0)
+mesh = ExtResource("1_xwlrj")
+surface_material_override/0 = SubResource("StandardMaterial3D_rftdn")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.191774, -0.0746845, 0)
+shape = SubResource("SphereShape3D_c8ntu")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_w54py")
+draw_pass_1 = SubResource("QuadMesh_8ka6i")
