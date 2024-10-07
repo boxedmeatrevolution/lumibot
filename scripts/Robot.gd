@@ -14,6 +14,7 @@ const WHIRL_DELTA_DB : float = -1
 @onready var grab_point := $GrabPoint
 @onready var fire_point := $FirePoint
 @onready var player : Player = owner.find_child("Camera3D")
+@onready var label := $Label3D
 
 var velocity := Vector3.ZERO
 var state_timer : float
@@ -30,7 +31,8 @@ enum State {
 	WALK,
 	THROW,
 	BARRAGE,
-	STOMP
+	STOMP,
+	WAVE,
 }
 
 var state : State = State.STAND
@@ -54,6 +56,11 @@ func _process(delta: float) -> void:
 		state_timer = STATE_MAX_TIME + 1
 	var at_min_time := (state_timer > STATE_MIN_TIME)
 	var at_max_time := (state_timer > STATE_MAX_TIME)
+	if state != State.WAVE && Global.num_gremlins <= 0:
+		state = State.WAVE
+		state_timer = 0
+		animation_player.play("WAVE", 0.5, 1.2)
+		velocity = Vector3.ZERO
 	if state == State.STAND:
 		if building != null && at_min_time && (at_max_time || randf() > exp(-delta / 3)):
 			state = State.THROW
@@ -97,6 +104,9 @@ func _process(delta: float) -> void:
 			state_timer = 0
 			animation_player.play("STAND", 0.5, 0.5)
 			velocity = Vector3.ZERO
+	elif state == State.WAVE:
+		if state_timer > 2:
+			label.visible = true
 
 func throw_building():
 	if building != null:
