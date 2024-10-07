@@ -4,8 +4,12 @@ const NORMAL_FOV : float = 40
 const ZOOMED_FOV : float = 15
 const NORMAL_SENSITIVITY : float = 0.002
 const ZOOMED_SENSITIVITY : float = 0.0004
+const NORMAL_SCOPE_SCALE : float = 0.15
+const ZOOMED_SCOPE_SCALE : float = 0.6
+
 var sensitivity := NORMAL_SENSITIVITY
 var is_zoomed_in := false
+var can_shoot = true
 
 # Camera shake
 var shake_amount = 0.0
@@ -17,14 +21,14 @@ const Bullet = preload("res://entities/Bullet.tscn")
 var rot_x : float = 0
 var rot_y : float = 0
 
-@onready var crosshair = $Crosshair
 @onready var scope = $Scope
+@onready var timer = $Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	timer.connect("timeout", Callable(self, "_on_Timer_timeout"))
+	scope.scale = Vector3(NORMAL_SCOPE_SCALE, NORMAL_SCOPE_SCALE, NORMAL_SCOPE_SCALE)
 	fov = NORMAL_FOV
-	scope.visible = false
-	crosshair.visible = true
 	
 	# Set camera zoom input
 	var mouseButtonRight = InputEventMouseButton.new()
@@ -60,7 +64,6 @@ func _process(delta: float) -> void:
 	if is_zoomed_in:
 		if shake_amount > 0:
 			shake_amount -= shake_decay * delta
-			print(shake_amount)
 			var shake_offset = Vector3(randf_range(-shake_intensity, shake_intensity), randf_range(-shake_intensity, shake_intensity), randf_range(-shake_intensity, shake_intensity)) * shake_amount
 			global_transform.origin += shake_offset
 		else:
@@ -75,7 +78,7 @@ func _input(event):
 		rotation.x = rot_x
 		rotation.y = rot_y
 
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_pressed("shoot") and can_shoot:
 		shoot()
 		
 		if Input.is_action_pressed("zoom"):
@@ -84,23 +87,25 @@ func _input(event):
 # Function to zoom in
 func zoom_in():
 	if not is_zoomed_in:
-		scope.visible = true
-		crosshair.visible = false
 		fov = ZOOMED_FOV
+		scope.scale = Vector3(ZOOMED_SCOPE_SCALE, ZOOMED_SCOPE_SCALE, ZOOMED_SCOPE_SCALE)
 		is_zoomed_in = true
 		sensitivity = ZOOMED_SENSITIVITY
 
 # Function to zoom out
 func zoom_out(): 
 	if is_zoomed_in:
-		scope.visible = false
-		crosshair.visible = true
 		fov = NORMAL_FOV
+		scope.scale = Vector3(NORMAL_SCOPE_SCALE, NORMAL_SCOPE_SCALE, NORMAL_SCOPE_SCALE)
 		is_zoomed_in = false
 		sensitivity = NORMAL_SENSITIVITY
 
 func shoot():
 	var bullet_instance = Bullet.instantiate()
 	get_tree().root.add_child(bullet_instance)
-	bullet_instance.global_transform = global_transform.translated(Vector3(0, -5, 0))
-	
+	bullet_instance.global_transform = global_transform.translated(Vector3(0, -2.5, 0))
+	can_shoot = false
+	timer.start()
+
+func _on_Timer_timeout():
+	can_shoot = true
