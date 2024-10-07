@@ -6,9 +6,9 @@ const Player := preload("res://scripts/Scope.gd")
 const SMALL_STOMP_DB : float = 10.0
 const LARGE_STOMP_DB : float = 15.0
 
-const WHIRL_START_DB : float = 20.0
-const WHIRL_END_DB : float = 10.0
-const WHIRL_DELTA_DB : float = -1
+const WHIRL_START_DB : float = 8.5
+const WHIRL_END_DB : float = 1.0
+const WHIRL_DELTA_DB : float = -3.5
 
 @onready var animation_player := $AnimationPlayer
 @onready var grab_point := $GrabPoint
