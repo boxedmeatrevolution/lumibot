@@ -1,7 +1,7 @@
 extends Area3D
 
 @export var speed = 80.0  # Speed of the bullet
-@export var upspeed = 10.0  # Speed of the bullet
+@export var upspeed = 5.0  # Speed of the bullet
 @export var pulldown = -9.8  # Gravity affecting the bullet
 
 var gravity_effect = Vector3(0, pulldown, 0)

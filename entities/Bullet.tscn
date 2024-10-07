@@ -27,7 +27,7 @@ albedo_color = Color(1, 1, 0, 0.196078)
 [node name="Bullet" type="Node3D"]
 
 [node name="Area3D" type="Area3D" parent="."]
-collision_layer = 9
+collision_layer = 25
 script = ExtResource("1_h41d5")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Area3D"]
