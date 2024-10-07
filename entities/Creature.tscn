@@ -24,4 +24,5 @@ polygon = PackedVector2Array(-2.41721, 0.549448, -2.06349, 2.7526, -0.860854, 4.
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.583528, 0.0979112)
-light_energy = 0.2
+light_energy = 0.3
+light_size = 5.0
