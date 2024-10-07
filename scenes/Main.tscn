@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c5w1jp5aqndav"]
+[gd_scene load_steps=30 format=3 uid="uid://c5w1jp5aqndav"]
 
 [ext_resource type="PackedScene" uid="uid://cae5y4l6ajbrh" path="res://entities/Robot.tscn" id="1_34fhc"]
 [ext_resource type="Script" path="res://scripts/Scope.gd" id="1_hsoda"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://w01qvykpqgp2" path="res://sprites/Horizon.png" id="11_hvhbj"]
 [ext_resource type="ArrayMesh" uid="uid://dlnca8jsnarjb" path="res://models/Terrain.obj" id="11_ss78j"]
 [ext_resource type="Texture2D" uid="uid://dim80dw1da80g" path="res://sprites/PaperTexture.jpg" id="12_rb0s1"]
+[ext_resource type="PackedScene" uid="uid://nfs1kwj716tf" path="res://entities/ShaderPrecompiler.tscn" id="16_efulk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c5g0x"]
 sky_top_color = Color(0.763506, 0.581599, 0.666773, 1)
@@ -543,5 +544,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5287, 68.0499, 0)
 
 [node name="Cloud3" parent="Clouds" instance=ExtResource("4_edb36")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -183.453, 26.1573, 0)
+
+[node name="ShaderPrecompiler" parent="." instance=ExtResource("16_efulk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.44921, 0)
 
 [connection signal="area_entered" from="Camera3D/Area3D" to="Camera3D" method="_on_area_entered"]

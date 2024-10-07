@@ -21,7 +21,7 @@ disable_receive_shadows = true
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.501109, 0.477657), -2.23062, -2.23062, 0, 0, Vector2(1, 0), -0.152862, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_2g2iy"]
+[sub_resource type="CurveTexture" id="CurveTexture_737b6"]
 curve = SubResource("Curve_di6pf")
 
 [sub_resource type="Curve" id="Curve_jn2to"]
@@ -29,7 +29,7 @@ max_value = 10.0
 _data = [Vector2(0, 5.87495), 0.0, 0.0, 0, 0, Vector2(0.549889, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_46h0u"]
+[sub_resource type="CurveTexture" id="CurveTexture_j1868"]
 curve = SubResource("Curve_jn2to")
 
 [sub_resource type="Curve" id="Curve_wcm02"]
@@ -37,7 +37,7 @@ max_value = 5.0
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 5), 10.7025, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_qvuas"]
+[sub_resource type="CurveTexture" id="CurveTexture_v6toh"]
 curve = SubResource("Curve_wcm02")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l1g72"]
@@ -46,12 +46,12 @@ emission_sphere_radius = 0.2
 angle_min = -180.0
 angle_max = 180.0
 gravity = Vector3(0, 0, 0)
-scale_curve = SubResource("CurveTexture_qvuas")
+scale_curve = SubResource("CurveTexture_v6toh")
 color = Color(0.453749, 0.483612, 0.857045, 1)
-alpha_curve = SubResource("CurveTexture_2g2iy")
-emission_curve = SubResource("CurveTexture_46h0u")
+alpha_curve = SubResource("CurveTexture_737b6")
+emission_curve = SubResource("CurveTexture_j1868")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rs1o4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ihs4u"]
 transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
@@ -64,7 +64,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_li18u"]
-material = SubResource("StandardMaterial3D_rs1o4")
+material = SubResource("StandardMaterial3D_ihs4u")
 size = Vector2(0.9, 0.9)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6iaak"]

@@ -1,13 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bv8nh1yttblng"]
+[gd_scene load_steps=5 format=3 uid="uid://bv8nh1yttblng"]
 
 [ext_resource type="Script" path="res://scripts/Bullet.gd" id="1_h41d5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i8n2a"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l6up3"]
-initial_velocity_min = 20.0
-initial_velocity_max = 20.0
-gravity = Vector3(0, 0, 0)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jg2pv"]
 height = 1.0
@@ -30,12 +25,6 @@ monitoring = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 0, 0)
 shape = SubResource("SphereShape3D_i8n2a")
-
-[node name="TrailGPUParticles3D" type="GPUParticles3D" parent="."]
-emitting = false
-amount = 20
-lifetime = 0.5
-process_material = SubResource("ParticleProcessMaterial_l6up3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 0, 0)

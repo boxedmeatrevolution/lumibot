@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://nfs1kwj716tf"]
+
+[ext_resource type="Script" path="res://scripts/ShaderPrecompiler.gd" id="1_dnogp"]
+[ext_resource type="PackedScene" uid="uid://bjqrwr1vb63xj" path="res://entities/Rocket.tscn" id="1_ldlvt"]
+[ext_resource type="PackedScene" uid="uid://bv8nh1yttblng" path="res://entities/Bullet.tscn" id="2_fwe37"]
+[ext_resource type="PackedScene" uid="uid://b86aefmrcoi0l" path="res://entities/Trash.tscn" id="3_fp7pf"]
+[ext_resource type="PackedScene" uid="uid://vq5qq8p1pp2x" path="res://entities/TrashDecor.tscn" id="4_qw35s"]
+
+[node name="ShaderPrecompiler" type="Node3D"]
+script = ExtResource("1_dnogp")
+
+[node name="Rocket" parent="." instance=ExtResource("1_ldlvt")]
+
+[node name="Bullet" parent="." instance=ExtResource("2_fwe37")]
+
+[node name="Trash" parent="." instance=ExtResource("3_fp7pf")]
+
+[node name="Trash2" parent="." instance=ExtResource("4_qw35s")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
