@@ -4,7 +4,7 @@ const NORMAL_FOV : float = 40
 const ZOOMED_FOV : float = 7
 const NORMAL_SENSITIVITY : float = 0.002
 const ZOOMED_SENSITIVITY : float = 0.0001
-const NORMAL_SCOPE_SCALE : float = 0.15
+const NORMAL_SCOPE_SCALE : float = 0.3
 const ZOOMED_SCOPE_SCALE : float = 0.3
 const RECOIL_DECAY_TIME : float = 0.2
 const SHAKE_DECAY_TIME : float = 0.1
@@ -62,10 +62,14 @@ func _ready() -> void:
 	
 	var keyShift = InputEventKey.new()
 	keyShift.physical_keycode = KEY_SHIFT
+	var keyEescape = InputEventKey.new()
+	keyEescape.physical_keycode = KEY_ESCAPE
 	
 	InputMap.add_action("shoot")
 	InputMap.action_add_event("shoot", mouseButtonLeft)
 	InputMap.action_add_event("shoot", keyShift)
+	InputMap.add_action("exit")
+	InputMap.action_add_event("exit", keyEescape)
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -84,6 +88,9 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Input.is_action_pressed("exit"):
+		print("QUIT")
+		get_tree().quit()
 	if !dead && Input.is_action_pressed("zoom"):
 		zoom_in()
 	else:
