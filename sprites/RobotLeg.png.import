@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4h36uar3lyb1"
 path.s3tc="res://.godot/imported/RobotLeg.png-5d6bf61dfd04d4bf72a3f372f7d128a1.s3tc.ctex"
+path.etc2="res://.godot/imported/RobotLeg.png-5d6bf61dfd04d4bf72a3f372f7d128a1.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://sprites/RobotLeg.png"
-dest_files=["res://.godot/imported/RobotLeg.png-5d6bf61dfd04d4bf72a3f372f7d128a1.s3tc.ctex"]
+dest_files=["res://.godot/imported/RobotLeg.png-5d6bf61dfd04d4bf72a3f372f7d128a1.s3tc.ctex", "res://.godot/imported/RobotLeg.png-5d6bf61dfd04d4bf72a3f372f7d128a1.etc2.ctex"]
 
 [params]
 

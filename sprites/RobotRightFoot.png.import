@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cmhmbigb2ae6e"
 path.s3tc="res://.godot/imported/RobotRightFoot.png-ef2ba187e4a4796346a7f7288541709e.s3tc.ctex"
+path.etc2="res://.godot/imported/RobotRightFoot.png-ef2ba187e4a4796346a7f7288541709e.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://sprites/RobotRightFoot.png"
-dest_files=["res://.godot/imported/RobotRightFoot.png-ef2ba187e4a4796346a7f7288541709e.s3tc.ctex"]
+dest_files=["res://.godot/imported/RobotRightFoot.png-ef2ba187e4a4796346a7f7288541709e.s3tc.ctex", "res://.godot/imported/RobotRightFoot.png-ef2ba187e4a4796346a7f7288541709e.etc2.ctex"]
 
 [params]
 

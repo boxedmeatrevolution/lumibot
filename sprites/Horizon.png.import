@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://w01qvykpqgp2"
 path.s3tc="res://.godot/imported/Horizon.png-4f3147230fc4c0d842e5640ea6e821e7.s3tc.ctex"
+path.etc2="res://.godot/imported/Horizon.png-4f3147230fc4c0d842e5640ea6e821e7.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://sprites/Horizon.png"
-dest_files=["res://.godot/imported/Horizon.png-4f3147230fc4c0d842e5640ea6e821e7.s3tc.ctex"]
+dest_files=["res://.godot/imported/Horizon.png-4f3147230fc4c0d842e5640ea6e821e7.s3tc.ctex", "res://.godot/imported/Horizon.png-4f3147230fc4c0d842e5640ea6e821e7.etc2.ctex"]
 
 [params]
 

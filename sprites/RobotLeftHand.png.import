@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4rdnws5ot0ai"
 path.s3tc="res://.godot/imported/RobotLeftHand.png-d4f39617dd24a50a6526df04ed78d5e2.s3tc.ctex"
+path.etc2="res://.godot/imported/RobotLeftHand.png-d4f39617dd24a50a6526df04ed78d5e2.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://sprites/RobotLeftHand.png"
-dest_files=["res://.godot/imported/RobotLeftHand.png-d4f39617dd24a50a6526df04ed78d5e2.s3tc.ctex"]
+dest_files=["res://.godot/imported/RobotLeftHand.png-d4f39617dd24a50a6526df04ed78d5e2.s3tc.ctex", "res://.godot/imported/RobotLeftHand.png-d4f39617dd24a50a6526df04ed78d5e2.etc2.ctex"]
 
 [params]
 

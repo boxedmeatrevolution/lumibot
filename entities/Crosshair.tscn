@@ -1,8 +1,5 @@
-[gd_scene load_steps=2 format=3 uid="uid://byona4nwrfbei"]
-
-[ext_resource type="Texture2D" path="res://sprites/crosshair.svg" id="1_ixeh6"]
+[gd_scene format=3 uid="uid://byona4nwrfbei"]
 
 [node name="Crosshair" type="Node3D"]
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-texture = ExtResource("1_ixeh6")

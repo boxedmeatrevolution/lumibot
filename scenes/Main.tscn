@@ -31,7 +31,9 @@ sky_material = SubResource("ProceduralSkyMaterial_c5g0x")
 background_mode = 2
 sky = SubResource("Sky_7g2di")
 ambient_light_source = 3
-ambient_light_energy = 2.0
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.18
+ambient_light_energy = 0.0
 glow_enabled = true
 fog_density = 0.001
 volumetric_fog_density = 0.001
@@ -92,8 +94,17 @@ material = SubResource("StandardMaterial3D_jeoa5")
 environment = SubResource("Environment_hcvir")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(0.907777, -0.0728371, -0.41308, 0, -0.984808, 0.173648, -0.419452, -0.157634, -0.893986, 0, 40, 0)
+transform = Transform3D(0.907777, -0.0728373, -0.41308, 0.0100357, -0.980754, 0.194988, -0.419332, -0.181152, -0.889576, 0, 40, 0)
 light_color = Color(1, 0.54902, 0.580392, 1)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+directional_shadow_mode = 0
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.272852, -0.260198, -0.926201, 0.0514151, -0.957411, 0.284113, -0.960681, -0.125141, -0.247853, 0, 40, 0)
+light_color = Color(1, 0.54902, 0.580392, 1)
+light_bake_mode = 1
+shadow_enabled = true
 directional_shadow_mode = 0
 
 [node name="Camera3D" type="Camera3D" parent="."]
