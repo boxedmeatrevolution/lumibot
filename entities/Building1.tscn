@@ -1,25 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://xgytm0x4vyxr"]
+[gd_scene load_steps=8 format=3 uid="uid://xgytm0x4vyxr"]
 
 [ext_resource type="Script" path="res://scripts/Building.gd" id="1_j8ga0"]
-[ext_resource type="Texture2D" uid="uid://cmrrn834ovu3t" path="res://sprites/Building1.png" id="2_2p2i8"]
+[ext_resource type="ArrayMesh" uid="uid://bnnmlywlsf7x2" path="res://models/BuildingCube.obj" id="3_riuwp"]
+[ext_resource type="Texture2D" uid="uid://cphwc3xqmi4t6" path="res://sprites/BuildingTexture1.png" id="4_tavr6"]
+[ext_resource type="Texture2D" uid="uid://6sufqxoq2gpd" path="res://sprites/BuildingTexture6.png" id="5_msgnc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fwvue"]
+size = Vector3(4, 10, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ktsfy"]
+albedo_texture = ExtResource("4_tavr6")
+uv1_scale = Vector3(2, 5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_juk8t"]
+albedo_texture = ExtResource("5_msgnc")
 
 [node name="Building1" type="Node3D"]
 script = ExtResource("1_j8ga0")
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-offset = Vector2(0, 480)
-shaded = true
-alpha_cut = 1
-texture = ExtResource("2_2p2i8")
-hframes = 2
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Area3D"]
-depth = 2.0
-polygon = PackedVector2Array(-1.49545, 0.813156, -0.640763, 5.65638, -1.48449, 7.90268, -1.39683, 9.41482, 1.39734, 9.55727, 1.75894, 9.18471, 1.1234, 8.14374, 1.68223, 6.0399, 0.444032, 0.144746, -1.34204, 0.122831)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+shape = SubResource("BoxShape3D_fwvue")
 
 [node name="GrabPoint" type="Node3D" parent="."]
 transform = Transform3D(-0.0941605, 0.995557, 0, -0.995557, -0.0941605, 0, 0, 0, 1, 0.50626, 4.84783, 0)
@@ -27,3 +32,9 @@ transform = Transform3D(-0.0941605, 0.995557, 0, -0.995557, -0.0941605, 0, 0, 0,
 [node name="RayCast3D" type="RayCast3D" parent="GrabPoint"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 enabled = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 5, 0, 0, 0, 2, 0, 0, 0)
+mesh = ExtResource("3_riuwp")
+surface_material_override/0 = SubResource("StandardMaterial3D_ktsfy")
+surface_material_override/1 = SubResource("StandardMaterial3D_juk8t")

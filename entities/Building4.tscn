@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://c1fc6487gnb7h"]
+
+[ext_resource type="Script" path="res://scripts/Building.gd" id="1_s7bp7"]
+[ext_resource type="ArrayMesh" uid="uid://bnnmlywlsf7x2" path="res://models/BuildingCube.obj" id="2_afyvw"]
+[ext_resource type="Texture2D" uid="uid://cb6ykerlkwy06" path="res://sprites/BuildingTexture2.png" id="3_m0ryb"]
+[ext_resource type="Texture2D" uid="uid://6sufqxoq2gpd" path="res://sprites/BuildingTexture6.png" id="4_wupkm"]
+[ext_resource type="ArrayMesh" uid="uid://giesp8q53cc1" path="res://models/BuildingRoof.obj" id="5_aij01"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fwvue"]
+size = Vector3(10, 4, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vvn3"]
+albedo_texture = ExtResource("3_m0ryb")
+uv1_scale = Vector3(5, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7hlje"]
+albedo_texture = ExtResource("4_wupkm")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_821ag"]
+albedo_texture = ExtResource("4_wupkm")
+uv1_scale = Vector3(1, 0.5, 1)
+
+[node name="Building4" type="Node3D"]
+script = ExtResource("1_s7bp7")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_fwvue")
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Area3D"]
+depth = 2.0
+polygon = PackedVector2Array(0.00836116, 4.98718, -4.99202, 3.98952, 4.9804, 3.99175)
+
+[node name="GrabPoint" type="Node3D" parent="."]
+transform = Transform3D(-0.00307427, 0.0325042, 0.999467, -0.995557, -0.0941605, 0, 0.0941103, -0.995026, 0.0326493, 0.000305712, 1.61618, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="GrabPoint"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+enabled = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0)
+mesh = ExtResource("2_afyvw")
+surface_material_override/0 = SubResource("StandardMaterial3D_5vvn3")
+surface_material_override/1 = SubResource("StandardMaterial3D_7hlje")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 4, 0)
+mesh = ExtResource("5_aij01")
+skeleton = NodePath("../MeshInstance3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_821ag")

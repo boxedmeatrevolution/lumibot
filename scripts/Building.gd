@@ -6,7 +6,7 @@ const PICKUP_TIME : float = 0.5
 const GRAVITY : float = 0.15
 const THROW_SPEED : float = 3
 
-@onready var sprite := $Sprite3D
+@onready var mesh := $MeshInstance3D
 @onready var area := $Area3D
 @onready var grab_point := $GrabPoint
 
@@ -23,10 +23,11 @@ var throw_dist : float
 var angular_velocity : float
 
 func _create_remnant():
-	var remnant := BuildingRemnantScene.instantiate()
-	remnant.texture = sprite.texture
-	get_parent().add_child(remnant)
-	remnant.global_transform = global_transform
+	pass
+	#var remnant := BuildingRemnantScene.instantiate()
+	#remnant.texture = sprite.texture
+	#get_parent().add_child(remnant)
+	#remnant.global_transform = global_transform
 
 func demolish():
 	if state == State.NORMAL:

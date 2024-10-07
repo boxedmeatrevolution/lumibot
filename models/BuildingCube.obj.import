@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bnnmlywlsf7x2"
+path="res://.godot/imported/BuildingCube.obj-4cc77b4be63bcd95cfb690f1ac6f8bba.mesh"
+
+[deps]
+
+files=["res://.godot/imported/BuildingCube.obj-4cc77b4be63bcd95cfb690f1ac6f8bba.mesh"]
+
+source_file="res://models/BuildingCube.obj"
+dest_files=["res://.godot/imported/BuildingCube.obj-4cc77b4be63bcd95cfb690f1ac6f8bba.mesh", "res://.godot/imported/BuildingCube.obj-4cc77b4be63bcd95cfb690f1ac6f8bba.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
